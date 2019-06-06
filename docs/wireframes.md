@@ -1,3 +1,3 @@
 # Wireframes
 
-[Wireframes](docs/pqwireframes.png)
+![Wireframes](docs/pqwireframes.png)
