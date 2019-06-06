@@ -1,3 +1,3 @@
 # Wireframes
 
-[Wireframes](docs/pqwireframes.io)
+[Wireframes](docs/pqwireframes.png)
