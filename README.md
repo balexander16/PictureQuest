@@ -20,3 +20,8 @@ Hopefully that app will be appealing to fans off RPG's that are looking to get u
 ## Navigation
 * I was thinking to primarily use bottom button navigation. So it would display the text/then present a button that would switch to camera mode.
 * After the picture is taken it would then display up to 4 results/choices based upon possible objects detected. Then switch to above with prompts repeat.
+* Toggle button items in a layout would work great like I saw demonstrated in chapter 15.
+
+## API usage
+* The primary API to be utilized will be Clarifai Object Recognition API, utliizing the community/free developer tier which does have a throttle of 5,000 inputs a month. 
+* I would also like to utilize google sign in to keep track of users and use each user to save story states. 
