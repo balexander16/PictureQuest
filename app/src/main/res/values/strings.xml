@@ -1,8 +1,8 @@
 <resources>
   <string name="app_name">Picture Quest</string>
-  <string name="title_home">Home</string>
-  <string name="title_dashboard">Dashboard</string>
-  <string name="title_notifications">Notifications</string>
+  <string name="title_home">Story</string>
+  <string name="title_dashboard">Choices</string>
+  <string name="title_notifications">Camera</string>
 
   <!--  Input Request strings-->
   <string name="city_input_request">Please take a picture in a city setting.</string>
@@ -11,7 +11,7 @@
 
   <string name="no_inputs_found">No possible inputs detected, please take another picture.</string>
 
-  <!--  Opening Storyline Strings-->
+  <!--  TODO finish Opening Storyline Strings-->
   <string name="opening_scene">Opening Scene</string>
 
   <!--   First Picture to 4 input options. Sign, Car, Building, plant-->
@@ -55,9 +55,10 @@
     few feet a creaking voice calls out. "That is close enough for my comfort, we have been watching
     you, and believe you might be able to help us." The voice is coming from the raven!
     "Please follow me." as it flies into the forest. </string>
-<!--   ^^ Natue input request ^^-->
+  <string name="to_camera">To Camera</string>
+  <!--   ^^ Natue input request ^^-->
 
-
+<!--TODO write out prompts first and make story arch-->
 
 
 </resources>
