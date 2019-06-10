@@ -1,3 +1,5 @@
 # Wireframes
 
-![Wireframes](/docs/pqwireframe.png)
+[WireFrames PDF](pqwireframe.pdf)
+
+![Wireframes](pqwireframe.png)
