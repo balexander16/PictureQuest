@@ -2,7 +2,7 @@
 
 * [User Stories](docs/user-stories.md)
 * [Wireframes](docs/wireframes.md)
-* [Entity Model](entitymodel.md)
+* [Entity Relationship Diagram](entitymodel.md)
 
 ## Personal Android Proect:
 Picture Quest is an android game where users walk through their communities and play through a fantasy world created by the world around them. By capturing images the program will recognize objects within them and create a text based world the players will interact with. Signs, cars, buildings, whatever is around you after inputs can be points leading to new activities. Initial versions will be entirely text based such as a sign stating "Town to the left" and the instructions would be walk for one minute to your left to get to the town. Then require another picture input when there. Further versions might implement map functions.
