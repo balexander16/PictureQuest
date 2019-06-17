@@ -8,8 +8,12 @@
 * Theme:
   
 ### What fields for the entites?
-* Story: Strings
-* Choices: strings in buttons
+* Story:
+  * Strings
+  * id: long
+* Choices: 
+  * strings in buttons
+  * id: long
 * For the image:
   * id: long
   * name: string
