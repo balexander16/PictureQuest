@@ -14,7 +14,7 @@
   * id: long
   * name: string
   * value: long (percent of how accurate it could be)
-Player: 
+* Player: 
   * id: long or long?
   * player name: string
 * Theme: String
