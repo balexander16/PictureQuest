@@ -3,10 +3,21 @@
 * Really rotating through a story fragment, a choices fragment, then a fragment that would jump me to a camera would fit. 
   * So using within those, stories pull out what plot points are coming up.
   * From the camera it should jump directly to the choices. Using buttons dependant upon how many possible inputs were found. 
+* The input image:
+* Player
+* Theme:
   
 ### What fields for the entites?
 * Story: Strings
 * Choices: strings in buttons
+* For the image:
+ * id: long
+ * name: string
+ * value: long (percent of how accurate it could be)
+Player: 
+ * id: long or long?
+ * player name: string
+* Theme: String
 
 ### Attributes 
 * phew not to certain, is there a better way then strings? will I have spaces to input the choices into buttons?
