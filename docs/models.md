@@ -11,12 +11,12 @@
 * Story: Strings
 * Choices: strings in buttons
 * For the image:
- * id: long
- * name: string
- * value: long (percent of how accurate it could be)
+  * id: long
+  * name: string
+  * value: long (percent of how accurate it could be)
 Player: 
- * id: long or long?
- * player name: string
+  * id: long or long?
+  * player name: string
 * Theme: String
 
 ### Attributes 
