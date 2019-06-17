@@ -25,7 +25,7 @@
 
 ### Attributes 
 * phew not to certain, is there a better way then strings? will I have spaces to input the choices into buttons?
-* scrolling text? Audio, damn who knows. 
+* scrolling text? Audio, dang who knows. 
 
 I think I have a general idea of the layout now and an idea of how to do it after this last week. Fragments make way more sense for doing this. 
 I should be able to work through this. Still working on how I can actually pull out the strings I want and need from these pictures. 
