@@ -1,4 +1,4 @@
-package edu.cnm.deepdive.picturequest.model;
+package edu.cnm.deepdive.picturequest.model.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -6,12 +6,13 @@ import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(primaryKeys = {"id"},
-    indices = {@Index("id")},
+@Entity(
     foreignKeys = {
         @ForeignKey(entity = Scene.class,
             parentColumns = "id",
-            childColumns = "scene_id")
+            childColumns = "scene_id",
+            onDelete = ForeignKey.RESTRICT
+        )
     })
 public class Player {
 

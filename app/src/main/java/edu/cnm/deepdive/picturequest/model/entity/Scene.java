@@ -1,4 +1,4 @@
-package edu.cnm.deepdive.picturequest.model;
+package edu.cnm.deepdive.picturequest.model.entity;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -7,11 +7,11 @@ import androidx.room.PrimaryKey;
 public class Scene {
 
   @PrimaryKey(autoGenerate = true)
-  private Long id;
+  private long id;
 
   private String scene;
 
-  public Long getId() {
+  public long getId() {
     return id;
   }
 

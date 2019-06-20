@@ -1,75 +1,78 @@
-package edu.cnm.deepdive.picturequest.model;
+package edu.cnm.deepdive.picturequest.model.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
-import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(primaryKeys =  {"id"},
-    indices = {@Index("id")},
+@Entity(
     foreignKeys = {
         @ForeignKey(entity = Player.class,
             parentColumns = "id",
-            childColumns = "player_id"),
+            childColumns = "player_id",
+            onDelete = ForeignKey.CASCADE
+        ),
         @ForeignKey(entity = Scene.class,
             parentColumns = "id",
-            childColumns = "to_scene_id"),
+            childColumns = "scene_id",
+            onDelete = ForeignKey.CASCADE),
         @ForeignKey(entity = Choice.class,
             parentColumns = "id",
-            childColumns = "choice_id")
+            childColumns = "choice_id",
+            onDelete = ForeignKey.CASCADE)
     })
 public class Input {
 
   @PrimaryKey(autoGenerate = true)
-  private Long id;
+  private long id;
+  @ColumnInfo(index = true, collate = ColumnInfo.NOCASE)
   private String name;
-  private Long value;
-  private Long date;
+  private long value;
+  private long date;
   @ColumnInfo(name="player_id", index = true)
-  private Long playerId;
+  private long playerId;
   @ColumnInfo(name="choice_id", index = true)
-  private Long choiceId;
+  private long choiceId;
   @ColumnInfo(name="scene_id", index = true)
-  private Long sceneId;
+  private long sceneId;
 
-  public Long getPlayerId() {
+  public long getPlayerId() {
     return playerId;
   }
 
-  public void setPlayerId(Long playerId) {
+  public void setPlayerId(long playerId) {
     this.playerId = playerId;
   }
 
-  public Long getChoiceId() {
+  public long getChoiceId() {
     return choiceId;
   }
 
-  public void setChoiceId(Long choiceId) {
+  public void setChoiceId(long choiceId) {
     this.choiceId = choiceId;
   }
 
-  public Long getSceneId() {
+  public long getSceneId() {
     return sceneId;
   }
 
-  public void setSceneId(Long sceneId) {
+  public void setSceneId(long sceneId) {
     this.sceneId = sceneId;
   }
 
-  public Long getDate() {
+  public long getDate() {
     return date;
   }
 
-  public void setDate(Long date) {
+  public void setDate(long date) {
     this.date = date;
   }
 
-  public Long getId() {
+  public long getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(long id) {
     this.id = id;
   }
 
@@ -81,11 +84,11 @@ public class Input {
     this.name = name;
   }
 
-  public Long getValue() {
+  public long getValue() {
     return value;
   }
 
-  public void setValue(Long value) {
+  public void setValue(long value) {
     this.value = value;
   }
 }

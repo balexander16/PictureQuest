@@ -1,4 +1,4 @@
-package edu.cnm.deepdive.picturequest.model;
+package edu.cnm.deepdive.picturequest.model.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -6,20 +6,25 @@ import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(primaryKeys = {"id"},
-    indices = {@Index("id")},
+@Entity(
+    indices = {
+        @Index(value = "name", unique = true)
+    },
     foreignKeys = {
         @ForeignKey(entity = Scene.class,
             parentColumns = "id",
-            childColumns = "from_scene_id"),
+            childColumns = "from_scene_id",
+            onDelete = ForeignKey.CASCADE),
         @ForeignKey(entity = Scene.class,
             parentColumns = "id",
-            childColumns = "to_scene_id")
+            childColumns = "to_scene_id",
+            onDelete = ForeignKey.CASCADE)
     })
 public class Choice {
 
   @PrimaryKey(autoGenerate = true)
-  private Long id;
+  private long id;
+  @ColumnInfo(collate = ColumnInfo.NOCASE)
   private String name;
   @ColumnInfo(name = "from_scene_id", index = true)
   private String fromSceneId;
@@ -42,7 +47,7 @@ public class Choice {
     this.fromSceneId = fromSceneId;
   }
 
-  public Long getId() {
+  public long getId() {
     return id;
   }
 
@@ -50,7 +55,7 @@ public class Choice {
     return name;
   }
 
-  public void setId(Long id) {
+  public void setId(long id) {
     this.id = id;
   }
 
