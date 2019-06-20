@@ -4,6 +4,9 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverter;
+import androidx.room.TypeConverters;
+import java.util.Date;
 
 @Entity(
     foreignKeys = {
@@ -28,7 +31,8 @@ public class Input {
   @ColumnInfo(index = true, collate = ColumnInfo.NOCASE)
   private String name;
   private long value;
-  private long date;
+  @TypeConverters(DateConverter.class)
+  private Date date;
   @ColumnInfo(name="player_id", index = true)
   private long playerId;
   @ColumnInfo(name="choice_id", index = true)
@@ -60,11 +64,11 @@ public class Input {
     this.sceneId = sceneId;
   }
 
-  public long getDate() {
+  public Date getDate() {
     return date;
   }
 
-  public void setDate(long date) {
+  public void setDate(Date date) {
     this.date = date;
   }
 
@@ -90,5 +94,19 @@ public class Input {
 
   public void setValue(long value) {
     this.value = value;
+  }
+
+  public static class DateConverter {
+
+    @TypeConverter
+    public static Date longToDate(Long value){
+      return value == null ? null : new Date(value);
+    }
+
+    @TypeConverter
+    public static Long dateToLong(Date value){
+      return value == null ? null : value.getTime();
+    }
+
   }
 }
