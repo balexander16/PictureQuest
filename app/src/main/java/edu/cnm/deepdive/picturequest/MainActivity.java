@@ -4,10 +4,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
+import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
   private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
       = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -40,16 +46,25 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     mTextMessage = (TextView) findViewById(R.id.message);
-    BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-    navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-    toCameraButton();
-  }
 
-  private void toCameraButton(){
-    Button camera;
-    camera = findViewById(R.id.to_camera);
-    camera.setVisibility(View.INVISIBLE);
+    NavController navController = Navigation.findNavController(this,R.id.nav_host_fragment);
+    BottomNavigationView bottomNav = findViewById(R.id.navigation);
+    NavigationUI.setupWithNavController(bottomNav, navController);
 
   }
+
+
+
+//    protected void onCreate(Bundle savedInstanceState) {
+//      super.onCreate(savedInstanceState);
+//      setContentView(R.layout.fragment_camera);
+//      if (null == savedInstanceState) {
+//        getSupportFragmentManager().beginTransaction()
+//            .replace(R.id.container, CameraFragment.newInstance())
+//            .commit();
+//      }
+//    }
+
+
 
 }

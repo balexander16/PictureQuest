@@ -4,6 +4,12 @@
   <string name="title_dashboard">Choices</string>
   <string name="title_notifications">Camera</string>
 
+  <string name="picture">Picture</string>
+  <string name="description_info">Info</string>
+  <string name="request_permission">This sample needs camera permission.</string>
+  <string name="camera_error">This device doesn\'t support Camera2 API.</string>
+  <string name="intro_message">Intro Messsage!</string>
+
   <!--  Input Request strings-->
   <string name="city_input_request">Please take a picture in a city setting.</string>
   <string name="nature_input_request">Please take a picture of a nature setting</string>
@@ -59,6 +65,8 @@
   <!--   ^^ Natue input request ^^-->
 
 <!--TODO write out prompts first and make story arch-->
+
+  <string name="take_picture">Take picture</string>
 
 
 </resources>

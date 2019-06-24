@@ -12,6 +12,7 @@ public class PictureQuestApplication extends Application {
   public void onCreate() {
     super.onCreate();
     Stetho.initializeWithDefaults(this);
+    //Test Thread to input data into database!
     new Thread(() -> {
       Player player = new Player();
       player.setPlayer("Brian");

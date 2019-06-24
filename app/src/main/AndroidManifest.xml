@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="edu.cnm.deepdive.picturequest">
 
+  <uses-permission android:name="android.permission.CAMERA" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-feature android:name="android.hardware.camera2.full" />
   <uses-permission android:name="android.permission.INTERNET" />
 
   <application
@@ -12,6 +15,7 @@
     android:supportsRtl="true"
     android:name=".PictureQuestApplication"
     android:theme="@style/AppTheme">
+
     <activity
       android:label="@string/app_name"
       android:name=".MainActivity">
