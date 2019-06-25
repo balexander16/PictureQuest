@@ -26,7 +26,7 @@
     app:layout_constraintBottom_toTopOf="@id/navigation"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="paretnt"
+    app:layout_constraintEnd_toEndOf="parent"
     android:name="androidx.navigation.fragment.NavHostFragment"
     app:defaultNavHost="true"
     app:navGraph="@navigation/nav_graph"/>

@@ -9,9 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class SceneFragment extends Fragment {
+public class ChoiceFragment extends Fragment {
 
-  public SceneFragment() {
+  public ChoiceFragment() {
     // required empty constructor
   }
 
