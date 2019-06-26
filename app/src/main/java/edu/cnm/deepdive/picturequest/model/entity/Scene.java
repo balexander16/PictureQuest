@@ -1,5 +1,6 @@
 package edu.cnm.deepdive.picturequest.model.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -25,5 +26,11 @@ public class Scene {
 
   public void setScene(String scene) {
     this.scene = scene;
+  }
+
+  @NonNull
+  @Override
+  public String toString() {
+    return scene;
   }
 }

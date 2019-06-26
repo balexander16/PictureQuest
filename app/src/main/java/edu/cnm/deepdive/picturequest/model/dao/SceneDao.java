@@ -15,4 +15,7 @@ public interface SceneDao {
 
   @Query("SELECT * FROM scene")
   LiveData<List<Scene>> getAll();
+
+  @Query("SELECT * FROM scene WHERE id = :id")
+  LiveData<Scene>findById(long id);
 }

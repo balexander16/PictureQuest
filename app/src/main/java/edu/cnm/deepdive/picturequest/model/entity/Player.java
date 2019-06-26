@@ -16,8 +16,6 @@ import androidx.room.PrimaryKey;
     })
 public class Player {
 
-  // No idea what keys and how to put all of this together.
-
 
   @PrimaryKey(autoGenerate = true)
   private long id;

@@ -55,15 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-//    protected void onCreate(Bundle savedInstanceState) {
-//      super.onCreate(savedInstanceState);
-//      setContentView(R.layout.fragment_camera);
-//      if (null == savedInstanceState) {
-//        getSupportFragmentManager().beginTransaction()
-//            .replace(R.id.container, CameraFragment.newInstance())
-//            .commit();
-//      }
-//    }
 
 
 
