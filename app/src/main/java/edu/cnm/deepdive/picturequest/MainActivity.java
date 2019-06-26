@@ -12,8 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 import com.google.android.material.navigation.NavigationView;
+import com.clarifai.clarifai_android_sdk.core.Clarifai;
+
 
 public class MainActivity extends AppCompatActivity {
+  private final String apiKey = "d1c94b09440a4d85a06e700f193fc56b";
+
 
   private TextView mTextMessage;
 
@@ -51,11 +55,10 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNav = findViewById(R.id.navigation);
     NavigationUI.setupWithNavController(bottomNav, navController);
 
+    //Call to clarifai API/Android SDK
+    Clarifai.start(getApplicationContext(), apiKey);
+
   }
-
-
-
-
 
 
 }
