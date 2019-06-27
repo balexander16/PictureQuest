@@ -12,11 +12,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 import com.google.android.material.navigation.NavigationView;
-import com.clarifai.clarifai_android_sdk.core.Clarifai;
+//import com.clarifai.clarifai_android_sdk.core.Clarifai;        said it does not exist?!?!
 
 
 public class MainActivity extends AppCompatActivity {
-  private final String apiKey = "d1c94b09440a4d85a06e700f193fc56b";
+//  private final String apiKey = "d1c94b09440a4d85a06e700f193fc56b";
 
 
   private TextView mTextMessage;
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     NavigationUI.setupWithNavController(bottomNav, navController);
 
     //Call to clarifai API/Android SDK
-    Clarifai.start(getApplicationContext(), apiKey);
+//    Clarifai.start(getApplicationContext(), apiKey);
 
   }
 
