@@ -8,7 +8,7 @@
     * Bottom Navigation links to a total of three fragments. 
       * Scene is mentioned above.
       * Choice is currently an empty placeholder fragment.
-      * Camera goes to the camera2 api that is currently running. 
+      * Camera goes to the camera2 api that is currently running. It currently saves pictures into internal storage on device. 
 * Working on integrating Clarifai Android SDK, fixed runtime exception still working on implementing. 
 
 ### Things in the repository
