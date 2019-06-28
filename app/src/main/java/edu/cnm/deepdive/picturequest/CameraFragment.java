@@ -64,6 +64,13 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import clarifai2.api.ClarifaiBuilder;
+import clarifai2.api.ClarifaiClient;
+import clarifai2.api.request.model.PredictRequest;
+import clarifai2.dto.input.ClarifaiInput;
+import clarifai2.dto.model.Model;
+import clarifai2.dto.model.output.ClarifaiOutput;
+import clarifai2.dto.prediction.Concept;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -78,13 +85,15 @@ import java.util.concurrent.TimeUnit;
 
 
 public class CameraFragment extends Fragment implements View.OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
-
+  private final String apiKey = "d1c94b09440a4d85a06e700f193fc56b";
   /**
    * Conversion from screen rotation to JPEG orientation.
    */
   private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
   private static final int REQUEST_CAMERA_PERMISSION = 1;
   private static final String FRAGMENT_DIALOG = "dialog";
+
+
 
   static {
     ORIENTATIONS.append(Surface.ROTATION_0, 90);
@@ -954,6 +963,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
           }
         }
       }
+      // TODO is this where clarifai call makes the most sense using mFile?
     }
 
   }
@@ -1034,6 +1044,18 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
               })
           .create();
     }
+  }
+
+  public class Clarifai {
+
+    final ClarifaiClient client = new ClarifaiBuilder(apiKey).buildSync();
+
+ //   Model<Concept> generalModel = client.getDefaultModels().generalModel();    //TODO make this read the file created!
+
+//    PredictRequest<Concept> request = generalModel.predict().withInputs(
+//        ClarifaiInput.forImage(new File(mFile))                                 //FIXME mFile is the object being saved where should I move this?
+//    );
+//    List<ClarifaiOutput<Concept>> result = request.executeSync().get();
   }
 
 

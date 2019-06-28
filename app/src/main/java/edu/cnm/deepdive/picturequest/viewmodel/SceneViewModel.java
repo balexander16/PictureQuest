@@ -24,13 +24,4 @@ public class SceneViewModel extends AndroidViewModel {
     return scene;
   }
 
-//  public void addScene(Scene scene) {
-//    new Thread(() -> {
-//      PictureQuestDatabase db = PictureQuestDatabase.getInstance(getApplication());
-//      db.getSceneDao().insert(scene);
-//    }).start();
-//
-//  }
-
-
 }

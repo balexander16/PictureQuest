@@ -1,22 +1,22 @@
 package edu.cnm.deepdive.picturequest;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.view.MenuItem;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
+import clarifai2.api.ClarifaiBuilder;
+import clarifai2.api.ClarifaiClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import androidx.appcompat.app.AppCompatActivity;
-import android.view.MenuItem;
-import android.widget.TextView;
-import com.google.android.material.navigation.NavigationView;
-//import com.clarifai.clarifai_android_sdk.core.Clarifai;        said it does not exist?!?!
+//import com.clarifai.clarifai_android_sdk.core.Clarifai;
 
 
 public class MainActivity extends AppCompatActivity {
-//  private final String apiKey = "d1c94b09440a4d85a06e700f193fc56b";
+
+
 
 
   private TextView mTextMessage;
@@ -56,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
     NavigationUI.setupWithNavController(bottomNav, navController);
 
     //Call to clarifai API/Android SDK
-//    Clarifai.start(getApplicationContext(), apiKey);
 
+//    Clarifai.start(getApplicationContext(), apiKey);     FIXME need android.arch and androidx how?
   }
 
 

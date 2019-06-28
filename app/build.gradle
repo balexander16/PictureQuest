@@ -29,17 +29,18 @@ android {
 repositories {
     flatDir {
         dirs 'libs'
+        mavenCentral()
     }
 }
 
 dependencies {
+    implementation 'com.clarifai.clarifai-api2:core:2.3.0'
     implementation 'com.android.support:multidex:1.0.3'
-   
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0-beta01'
     implementation 'com.google.android.material:material:1.1.0-alpha07'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0-alpha01'     //FIXME right here is one 
     def nav_version = "2.1.0-alpha05"
     implementation "androidx.navigation:navigation-fragment:$nav_version"
     // For Kotlin use navigation-fragment-ktx
@@ -52,10 +53,10 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.3.0-alpha01'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0-alpha01'
     
-    // implementations for clarifai sdk
-//    implementation 'com.clarifai.clarifai-api2:core:2.3.0'
+    // implementations for clarifai sdk which does not work leaving here for now. TODO remove in near future.
+//    
 //    implementation (name:'clarifai-android-sdk-v2.0.1',ext: 'aar')
-//    implementation 'android.arch.lifecycle:extensions:1.1.1'
+//    implementation 'android.arch.lifecycle:extensions:1.1.1'      FIXME its you i know need to migrate you   
 //    implementation 'com.android.volley:volley:1.1.0'
 //    implementation 'com.google.protobuf:protobuf-java:3.5.0'
 //    implementation 'com.google.protobuf:protobuf-java-util:3.4.0'
