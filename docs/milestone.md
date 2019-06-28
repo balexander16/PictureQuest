@@ -5,7 +5,7 @@
 * Camera2 api is implemented and capturing an image to internal storage on the android device. 
 * Navigation through three fragments, scene, choice, and camera handled throigh nav-graph. 
     * Opening fragment is Scene, which currently displays one scene taken from the database. 
-      * Still deciding how to implement this in a user friendly experience. It is currently in a simple list view not to complicate things. Will most likely use some scrolling text contained within an area that will be ontop of an image of a scroll or something like that. 
+      * Still deciding how to implement this in a user friendly experience. It is currently in a simple list view not to complicate things. Will most likely use some scrolling text contained within an area that will be ontop of an image of a scroll or another way to create an aesthetically pleasing and thematic display. 
     * Bottom Navigation links to a total of three fragments. 
       * Scene is mentioned above.
       * Choice is currently an empty placeholder fragment.
