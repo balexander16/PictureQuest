@@ -8,9 +8,9 @@
       * Still deciding how to implement this in a user friendly experience. It is currently in a simple list view not to complicate things. Will most likely use some scrolling text contained within an area that will be ontop of an image of a scroll or another way to create an aesthetically pleasing and thematic display. 
     * Bottom Navigation links to a total of three fragments. 
       * Scene is mentioned above.
-      * Choice is currently an empty placeholder fragment.
+      * Choice is currently an empty placeholder fragment. Until input is operational there is no buttons to appear upon successful pbject detection/tagging. 
       * Camera goes to the camera2 api that is currently running. It currently saves pictures into internal storage on device. 
-* Have put in implementation to use Clarifai Java API library. Currently working on getting the last image taken to be used as the 
+* Have put in implementation to use Clarifai Java API. Currently working on getting the last image taken to be used as the 
 input once and only once. Deciding if input file should then be cleared or saved to be viewed later on in the game to account for what images got you where you are. 
 
 ### Things in the repository
