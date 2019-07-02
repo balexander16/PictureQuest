@@ -19,6 +19,8 @@ import edu.cnm.deepdive.picturequest.model.entity.Input;
 import edu.cnm.deepdive.picturequest.model.entity.Player;
 import edu.cnm.deepdive.picturequest.model.entity.Scene;
 
+//TODO decide if I actually do the Clarifai stuff here or can I just call it to populate the Database?
+
 @Database(entities = {Player.class, Scene.class, Input.class, Choice.class, ChoiceSynonym.class}, version = 1)
 public abstract class PictureQuestDatabase  extends RoomDatabase {
 
@@ -62,6 +64,8 @@ public abstract class PictureQuestDatabase  extends RoomDatabase {
       this.db = db;
     }
 
+
+    //TODO write a bunch more code to pre-populate the database with all Scenes, possible choices, and choice synonyms. 
     @Override
     protected Void doInBackground(Void... voids) {
       Scene scene1 = new Scene();

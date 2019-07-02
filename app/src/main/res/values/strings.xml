@@ -10,6 +10,12 @@
   <string name="camera_error">This device doesn\'t support Camera2 API.</string>
   <string name="intro_message">Intro Messsage!</string>
 
+  <string name="api_key">d1c94b09440a4d85a06e700f193fc56b</string>
+
+<!--  Possibly unnecessary strings-->
+  <string name="error">Error while contacting API</string>
+  <string name="no_results">No Results from API</string>
+
   <!--  Input Request strings-->
   <string name="city_input_request">Please take a picture in a city setting.</string>
   <string name="nature_input_request">Please take a picture of a nature setting</string>

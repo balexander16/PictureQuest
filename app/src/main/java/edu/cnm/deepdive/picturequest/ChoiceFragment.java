@@ -26,4 +26,7 @@ public class ChoiceFragment extends Fragment {
       @Nullable Bundle savedInstanceState) {
     return super.onCreateView(inflater, container, savedInstanceState);
   }
+
+  //TODO Make a set of 1 or more buttons appear dependant upon inputs received through the clarifai api
+
 }

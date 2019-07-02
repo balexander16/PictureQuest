@@ -11,7 +11,6 @@ import androidx.navigation.ui.NavigationUI;
 import clarifai2.api.ClarifaiBuilder;
 import clarifai2.api.ClarifaiClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-//import com.clarifai.clarifai_android_sdk.core.Clarifai;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -55,9 +54,7 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNav = findViewById(R.id.navigation);
     NavigationUI.setupWithNavController(bottomNav, navController);
 
-    //Call to clarifai API/Android SDK
 
-//    Clarifai.start(getApplicationContext(), apiKey);     FIXME need android.arch and androidx how?
   }
 
 

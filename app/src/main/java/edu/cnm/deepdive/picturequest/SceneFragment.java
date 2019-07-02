@@ -35,6 +35,10 @@ public class SceneFragment extends Fragment {
     this.context = context;
   }
 
+
+
+
+  //TODO change this from a list to a dialog put ontop of an image. Scrolling dialog etc would work.
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
 
