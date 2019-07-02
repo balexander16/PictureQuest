@@ -65,7 +65,7 @@ public abstract class PictureQuestDatabase  extends RoomDatabase {
     }
 
 
-    //TODO write a bunch more code to pre-populate the database with all Scenes, possible choices, and choice synonyms. 
+    //TODO write a bunch more code to pre-populate the database with all Scenes, possible choices, and choice synonyms.
     @Override
     protected Void doInBackground(Void... voids) {
       Scene scene1 = new Scene();

@@ -55,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
     NavigationUI.setupWithNavController(bottomNav, navController);
 
 
+
+
+    //TODO figure out if I should initialize the api here or when used. Is this preference
   }
 
 

@@ -42,7 +42,6 @@ import android.hardware.camera2.TotalCaptureResult;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.Image;
 import android.media.ImageReader;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -59,23 +58,13 @@ import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import androidx.annotation.StringRes;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import clarifai2.api.ClarifaiBuilder;
-import clarifai2.api.ClarifaiClient;
-import clarifai2.api.ClarifaiResponse;
-import clarifai2.api.request.model.PredictRequest;
-import clarifai2.dto.input.ClarifaiInput;
-import clarifai2.dto.model.Model;
-import clarifai2.dto.model.output.ClarifaiOutput;
-import clarifai2.dto.prediction.Concept;
-import com.google.android.material.snackbar.Snackbar;
+import edu.cnm.deepdive.picturequest.service.ClarifaiTask;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -262,7 +251,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
 
     @Override
     public void onImageAvailable(ImageReader reader) {
-      mBackgroundHandler.post(new ImageSaver(reader.acquireNextImage(), mFile));
+      mBackgroundHandler.post(new ImageSaver(reader.acquireNextImage(), mFile, getContext()));
     }
 
   };
@@ -854,9 +843,15 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
             @NonNull TotalCaptureResult result) {
           showToast("Saved: " + mFile);
           Log.d(TAG, mFile.toString());
+          new ClarifaiTask(getContext())
+              .execute(mFile);
           unlockFocus();
+          //TODO see if this is the right place for the clarifai task.
+
+
         }
       };
+
 
       mCaptureSession.stopRepeating();
       mCaptureSession.abortCaptures();
@@ -942,13 +937,18 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
      */
     private final File mFile;
 
-    ImageSaver(Image image, File file) {
+    private final Context context;
+
+    ImageSaver(Image image, File file, Context context) {
       mImage = image;
       mFile = file;
+      this.context = context;
+
     }
 
     @Override
     public void run() {
+
       ByteBuffer buffer = mImage.getPlanes()[0].getBuffer();
       byte[] bytes = new byte[buffer.remaining()];
       buffer.get(bytes);
@@ -956,6 +956,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
       try {
         output = new FileOutputStream(mFile);
         output.write(bytes);
+        //TODO try it here with a byte[]
       } catch (IOException e) {
         e.printStackTrace();
       } finally {
@@ -969,7 +970,8 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
         }
       }
       // TODO is this where clarifai call makes the most sense using mFile?
-
+//      new ClarifaiTask(context)
+//          .execute(mFile);
     }
 
   }
@@ -1052,45 +1054,10 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
     }
   }
 
-  //TODO put this in its own class? Or split up the tasks
-  //TODO figure out how to store the image then delete it after use.
-  //TODO understand AsyncTask Better and decide how to do this. Take in a file or specifically an Image
-  // does this have to be a List of ClarifaiOutputs. I think so concept.name is the most useful thing here.
-  //
-  public class ClarifaiTask extends AsyncTask<File, Void, List<ClarifaiOutput<Concept>>> {
 
-    @Override
-    protected List doInBackground(File... files) {
-
-      // Connect to Clarifai using your API token
-      ClarifaiClient client = new ClarifaiBuilder(apiKey).buildSync();
-
-      List<ClarifaiOutput<Concept>> predictionResults;
-
-      // For each photo we pass, send it off to Clarifai
-      predictionResults = client.getDefaultModels().generalModel().predict()
-          .withInputs(ClarifaiInput.forImage(mFile)).executeSync().get();
-      return predictionResults;
-    }
-
-
-    protected void onPostExecute(ClarifaiResponse<List<ClarifaiOutput<Concept>>> response) {
-      if (!response.isSuccessful()) {
-       showToast("Error contacting API");
-       return;
-      }
-      final List<ClarifaiOutput<Concept>> predictions = response.get();
-      if(predictions.isEmpty()){
-        showToast("No result");
-        return;
-      }
-
-
-    }
 
 
 
 
 
   }
-}
