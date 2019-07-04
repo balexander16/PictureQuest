@@ -312,6 +312,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
                 aeState == CaptureResult.CONTROL_AE_STATE_CONVERGED) {
               mState = STATE_PICTURE_TAKEN;
               captureStillPicture();
+          //TODO see if I need both of these calls. I do not think this is the place
             } else {
               runPrecaptureSequence();
             }
@@ -333,7 +334,8 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
           Integer aeState = result.get(CaptureResult.CONTROL_AE_STATE);
           if (aeState == null || aeState != CaptureResult.CONTROL_AE_STATE_PRECAPTURE) {
             mState = STATE_PICTURE_TAKEN;
-            captureStillPicture();
+            captureStillPicture();                //FIXME it might be here too?
+
           }
           break;
         }
@@ -843,10 +845,13 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
             @NonNull TotalCaptureResult result) {
           showToast("Saved: " + mFile);
           Log.d(TAG, mFile.toString());
-          new ClarifaiTask(getContext())
-              .execute(mFile);
+//          new ClarifaiTask(getContext())              //FIXME works here but calls multiple times
+//              .execute(mFile);
           unlockFocus();
-          //TODO see if this is the right place for the clarifai task.
+//          new ClarifaiTask(getContext())
+//              .execute(mFile);
+
+          //TODO see if this is the right place for the clarifai task. I think so it works!!!!!!!
 
 
         }
@@ -901,6 +906,8 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
     switch (view.getId()) {
       case R.id.picture: {
         takePicture();
+        new ClarifaiTask(getContext())
+          .execute(mFile);
         break;
       }
       case R.id.info: {
@@ -943,7 +950,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
       mImage = image;
       mFile = file;
       this.context = context;
-
+      //TODO try here with ClarifaiTask
     }
 
     @Override
@@ -956,7 +963,6 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
       try {
         output = new FileOutputStream(mFile);
         output.write(bytes);
-        //TODO try it here with a byte[]
       } catch (IOException e) {
         e.printStackTrace();
       } finally {
@@ -969,7 +975,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
           }
         }
       }
-      // TODO is this where clarifai call makes the most sense using mFile?
+      // TODO is this where clarifai call makes the most sense using mFile? This also works.
 //      new ClarifaiTask(context)
 //          .execute(mFile);
     }

@@ -6,30 +6,35 @@ import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverter;
 import androidx.room.TypeConverters;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import java.util.Date;
 
-@Entity(
-    foreignKeys = {
-        @ForeignKey(entity = Player.class,
-            parentColumns = "id",
-            childColumns = "player_id",
-            onDelete = ForeignKey.CASCADE
-        ),
-        @ForeignKey(entity = Scene.class,
-            parentColumns = "id",
-            childColumns = "scene_id",
-            onDelete = ForeignKey.CASCADE),
-        @ForeignKey(entity = Choice.class,
-            parentColumns = "id",
-            childColumns = "choice_id",
-            onDelete = ForeignKey.CASCADE)
-    })
+@Entity
+//    (
+//    foreignKeys = {
+//        @ForeignKey(entity = Player.class,
+//            parentColumns = "id",
+//            childColumns = "player_id",
+//            onDelete = ForeignKey.CASCADE
+//        ),
+//        @ForeignKey(entity = Scene.class,
+//            parentColumns = "id",
+//            childColumns = "scene_id",
+//            onDelete = ForeignKey.CASCADE),
+//        @ForeignKey(entity = Choice.class,
+//            parentColumns = "id",
+//            childColumns = "choice_id",
+//            onDelete = ForeignKey.CASCADE)
+//    })
 public class Input {
 
   @PrimaryKey(autoGenerate = true)
   private long id;
   @ColumnInfo(index = true, collate = ColumnInfo.NOCASE)
-  private String name;
+  @SerializedName("name")
+  @Expose
+  private String name;                        //List, Live data<list>, array or something??
   private long value;
   @TypeConverters(DateConverter.class)
   private Date date;
