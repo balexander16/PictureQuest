@@ -1,0 +1,111 @@
+[
+  {
+    "id": 1,
+    "name": "stop"
+  },
+  {
+    "id": 2,
+    "name": "streetlight"
+  },
+  {
+    "id": 3,
+    "name": "truck"
+  },
+  {
+    "id": 4,
+    "name": "van"
+  },
+  {
+    "id": 5,
+    "name": "vehicle"
+  },
+  {
+    "id": 6,
+    "name": "lamp"
+  },
+  {
+    "id": 7,
+    "name": "wood"
+  },
+  {
+    "id": 8,
+    "name": "metal"
+  },
+  {
+    "id": 9,
+    "name": "industry"
+  },
+  {
+    "id": 10,
+    "name": "bush"
+  },
+  {
+    "id": 11,
+    "name": "plant"
+  },
+  {
+    "id": 12,
+    "name": "pebble"
+  },
+  {
+    "id": 13,
+    "name": "stone"
+  },
+  {
+    "id": 14,
+    "name": "dog"
+  },
+  {
+    "id": 15,
+    "name": "cat"
+  },
+  {
+    "id": 16,
+    "name": "chair"
+  },
+  {
+    "id": 17,
+    "name": "sofa"
+  },
+  {
+    "id": 18,
+    "name": "desk"
+  },
+  {
+    "id": 19,
+    "name": "coffee"
+  },
+  {
+    "id": 20,
+    "name": "beer"
+  },
+  {
+    "id": 21,
+    "name": "pencil"
+  },
+  {
+    "id": 22,
+    "name": "beer"
+  },
+  {
+    "id": 23,
+    "name": "laptop"
+  },
+  {
+    "id": 24,
+    "name": "mac"
+  },
+  {
+    "id": 25,
+    "name": "shoes"
+  },
+  {
+    "id": 26,
+    "name": "nike"
+  },
+  {
+    "id": 27,
+    "name": "sneaker"
+  }
+]
+	

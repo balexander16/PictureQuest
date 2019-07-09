@@ -5,6 +5,7 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
+import com.google.gson.annotations.SerializedName;
 
 @Entity(
     indices = {
@@ -27,23 +28,25 @@ public class Choice {
   @ColumnInfo(collate = ColumnInfo.NOCASE)
   private String name;
   @ColumnInfo(name = "from_scene_id", index = true)
-  private String fromSceneId;
+  @SerializedName("from")
+  private long fromSceneId;
+  @SerializedName("to")
   @ColumnInfo(name = "to_scene_id", index = true)
-  private String toStringId;
+  private long toSceneId;
 
-  public String getToStringId() {
-    return toStringId;
+  public long getToSceneId() {
+    return toSceneId;
   }
 
-  public void setToStringId(String toStringId) {
-    this.toStringId = toStringId;
+  public void setToSceneId(long toSceneId) {
+    this.toSceneId = toSceneId;
   }
 
-  public String getFromSceneId() {
+  public long getFromSceneId() {
     return fromSceneId;
   }
 
-  public void setFromSceneId(String fromSceneId) {
+  public void setFromSceneId(long fromSceneId) {
     this.fromSceneId = fromSceneId;
   }
 

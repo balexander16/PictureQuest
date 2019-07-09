@@ -22,6 +22,11 @@ import edu.cnm.deepdive.picturequest.model.entity.Input;
 import java.io.File;
 import java.util.List;
 
+//This class implements and utilizes the Clarifai client by creating a new client using the apiKey then
+//making a call to the GeneralModel to receive an output list of tagged images upon a file captured
+//from the camerafragment class. It does this in the background then uses the output names to correspond
+//with a possible choice for the scene we are currently at.
+
 public class ClarifaiTask extends AsyncTask<File, Void, List<ClarifaiOutput<Concept>>> {
 
   // d4db789e7e4d4b10ad75d7113be86fee   TODO resource API key
@@ -39,7 +44,6 @@ public class ClarifaiTask extends AsyncTask<File, Void, List<ClarifaiOutput<Conc
         client.getDefaultModels().generalModel().predict()
             .withInputs(ClarifaiInput.forImage(files[0])).executeSync();
     if (response.isSuccessful()) {
-      //TODO save to the database in the background
       PictureQuestDatabase db = PictureQuestDatabase.getInstance(context);
 
       final List<ClarifaiOutput<Concept>> predictions = response.get();

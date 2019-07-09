@@ -11,6 +11,7 @@ import androidx.navigation.ui.NavigationUI;
 import clarifai2.api.ClarifaiBuilder;
 import clarifai2.api.ClarifaiClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import edu.cnm.deepdive.picturequest.model.database.PictureQuestDatabase;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -57,8 +58,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    //TODO figure out if I should initialize the api here or when used. Is this preference
+
   }
+
+
 
 
 }

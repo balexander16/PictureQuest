@@ -1,0 +1,76 @@
+[
+  {
+    "id": 1,
+    "name": "sign",
+    "from": 1,
+    "to": 1
+  },
+  {
+    "id": 2,
+    "name": "car"
+  },
+  {
+    "id": 3,
+    "name": "light"
+  },
+  {
+    "id": 4,
+    "name": "building"
+  },
+  {
+    "id": 5,
+    "name": "door"
+  },
+  {
+    "id": 6,
+    "name": "tree"
+  },
+  {
+    "id": 7,
+    "name": "flower"
+  },
+  {
+    "id": 8,
+    "name": "rock"
+  },
+  {
+    "id": 9,
+    "name": "people"
+  },
+  {
+    "id": 10,
+    "name": "woman"
+  },
+  {
+    "id": 11,
+    "name": "man"
+  },
+  {
+    "id": 12,
+    "name": "animal"
+  },
+  {
+    "id": 13,
+    "name": "furniture"
+  },
+  {
+    "id": 14,
+    "name": "drink"
+  },
+  {
+    "id": 15,
+    "name": "knife"
+  },
+  {
+    "id": 16,
+    "name": "pencil"
+  },
+  {
+    "id": 17,
+    "name": "computer"
+  },
+  {
+    "id": 18,
+    "name": "shoe"
+  }
+]

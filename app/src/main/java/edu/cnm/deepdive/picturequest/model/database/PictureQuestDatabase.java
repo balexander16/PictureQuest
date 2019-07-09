@@ -19,8 +19,6 @@ import edu.cnm.deepdive.picturequest.model.entity.Input;
 import edu.cnm.deepdive.picturequest.model.entity.Player;
 import edu.cnm.deepdive.picturequest.model.entity.Scene;
 
-//TODO decide if I actually do the Clarifai stuff here or can I just call it to populate the Database?
-
 @Database(entities = {Player.class, Scene.class, Input.class, Choice.class, ChoiceSynonym.class}, version = 1)
 public abstract class PictureQuestDatabase  extends RoomDatabase {
 
@@ -73,6 +71,12 @@ public abstract class PictureQuestDatabase  extends RoomDatabase {
       db.getSceneDao().insert(scene1);
       return null;
     }
+
+    // TODO take file from res.
   }
+
+// TODO create a method that will extract from the res/raw json files.
+
+
 
 }
