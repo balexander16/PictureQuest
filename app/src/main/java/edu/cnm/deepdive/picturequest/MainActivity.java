@@ -1,6 +1,8 @@
 package edu.cnm.deepdive.picturequest;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -12,6 +14,7 @@ import clarifai2.api.ClarifaiBuilder;
 import clarifai2.api.ClarifaiClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import edu.cnm.deepdive.picturequest.model.database.PictureQuestDatabase;
+import edu.cnm.deepdive.picturequest.service.GoogleSignInService;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -55,13 +58,36 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNav = findViewById(R.id.navigation);
     NavigationUI.setupWithNavController(bottomNav, navController);
 
-
-
-
-
   }
 
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.options, menu);
+    return true;
+  }
 
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    boolean handled = true;
+    switch (item.getItemId()) {
+      case R.id.sign_out:
+        signOut();
+        break;
+        default:
+          handled = super.onOptionsItemSelected(item);
+    }
+    return handled;
+  }
+
+  private void  signOut() {
+    GoogleSignInService service = GoogleSignInService.getInstance();
+    service.getClient().signOut().addOnCompleteListener((task) -> {
+      service.setAccount(null);
+      Intent intent = new Intent(this, LoginActivity.class);
+      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+      startActivity(intent);
+    });
+  }
 
 
 }

@@ -12,7 +12,7 @@
 
   <string name="api_key">d1c94b09440a4d85a06e700f193fc56b</string>
 
-<!--  Possibly unnecessary strings-->
+  <!--  Possibly unnecessary strings-->
   <string name="error">Error while contacting API</string>
   <string name="no_results">No Results from API</string>
 
@@ -55,13 +55,13 @@
   <string name="wagon_trip">The wagon creaks and sways as you travel along a well worn road
     through the forest, you hear a rustling in a bush ahead and a man wearing
     a hood jumps out from behind a bush. "Give me all of your gold and no one will be hurt.</string>
-<!-- ^^ TODO figure out what request! Not sure what request  ^^ -->
+  <!-- ^^ TODO figure out what request! Not sure what request  ^^ -->
 
   <string name="investigate_tower">As you approach the tower you notice the birds have stopped
     chirping near by and an erie hum has been getting louder. Suddenly a scream pierces through the
     air at the same time as you entering the tower.
     </string>
-<!-- ^^  request indoor input  ^^ -->
+  <!-- ^^  request indoor input  ^^ -->
 
   <string name="investigate_raven">The raven watches you every step of the way, as you get within a
     few feet a creaking voice calls out. "That is close enough for my comfort, we have been watching
@@ -70,9 +70,11 @@
   <string name="to_camera">To Camera</string>
   <!--   ^^ Natue input request ^^-->
 
-<!--TODO write out prompts first and make story arch-->
+  <!--TODO write out prompts first and make story arch-->
 
   <string name="take_picture">Take picture</string>
+  <string name="authentication_error">Unable to Authenticate User</string>
+  <string name="sign_out">Sign Out</string>
 
 
 </resources>

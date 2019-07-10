@@ -20,7 +20,7 @@ public class ChoiceSynonym {
   @ColumnInfo(name="synonym_name", index = true)
   private String synonymName;
   @ColumnInfo(name="choice_id", index = true)
-  private String choiceId;
+  private long choiceId;
 
   public long getId() {
     return id;
@@ -30,11 +30,11 @@ public class ChoiceSynonym {
     this.id = id;
   }
 
-  public String getChoiceId() {
+  public long getChoiceId() {
     return choiceId;
   }
 
-  public void setChoiceId(String choiceId) {
+  public void setChoiceId(long choiceId) {
     this.choiceId = choiceId;
   }
 

@@ -21,13 +21,13 @@ public class Player {
   private long id;
   private String player;
   @ColumnInfo(name = "scene_id", index = true)
-  private String sceneId;
+  private long sceneId;
 
-  public String getSceneId() {
+  public long getSceneId() {
     return sceneId;
   }
 
-  public void setSceneId(String sceneId) {
+  public void setSceneId(long sceneId) {
     this.sceneId = sceneId;
   }
 
