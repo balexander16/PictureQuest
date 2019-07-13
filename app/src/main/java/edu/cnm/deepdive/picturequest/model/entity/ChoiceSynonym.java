@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
+import com.google.gson.annotations.SerializedName;
 
 @Entity(
     foreignKeys = {
@@ -19,6 +20,7 @@ public class ChoiceSynonym {
   private String name;
   @ColumnInfo(name="synonym_name", index = true)
   private String synonymName;
+  @SerializedName("to")
   @ColumnInfo(name="choice_id", index = true)
   private long choiceId;
 

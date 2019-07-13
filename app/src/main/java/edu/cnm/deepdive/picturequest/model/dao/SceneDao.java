@@ -13,6 +13,9 @@ public interface SceneDao {
   @Insert
   void insert(Scene scene);
 
+  @Insert
+  void insert(Scene... scenes);
+
   @Query("SELECT * FROM scene")
   LiveData<List<Scene>> getAll();
 

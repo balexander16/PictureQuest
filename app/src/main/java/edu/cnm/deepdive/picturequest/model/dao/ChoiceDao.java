@@ -13,6 +13,9 @@ public interface ChoiceDao {
   @Insert
   void insert(Choice choice);
 
+  @Insert
+  void insert(Choice... choices);
+
   @Query("SELECT * FROM choice")
   LiveData<List<Choice>>getAll();
 

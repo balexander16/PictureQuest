@@ -8,6 +8,9 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import edu.cnm.deepdive.picturequest.R;
 import edu.cnm.deepdive.picturequest.model.dao.ChoiceDao;
 import edu.cnm.deepdive.picturequest.model.dao.ChoiceSynonymDao;
 import edu.cnm.deepdive.picturequest.model.dao.InputDao;
@@ -18,6 +21,9 @@ import edu.cnm.deepdive.picturequest.model.entity.ChoiceSynonym;
 import edu.cnm.deepdive.picturequest.model.entity.Input;
 import edu.cnm.deepdive.picturequest.model.entity.Player;
 import edu.cnm.deepdive.picturequest.model.entity.Scene;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 
 @Database(entities = {Player.class, Scene.class, Input.class, Choice.class, ChoiceSynonym.class}, version = 1)
 public abstract class PictureQuestDatabase  extends RoomDatabase {
@@ -45,7 +51,7 @@ public abstract class PictureQuestDatabase  extends RoomDatabase {
                 @Override
                 public void onCreate(@NonNull SupportSQLiteDatabase db) {
                   super.onCreate(db);
-                  new PopulateDbTask(INSTANCE).execute();
+                  new PopulateDbTask(INSTANCE, context).execute();
                 }
               }).build();
         }
@@ -58,9 +64,14 @@ public abstract class PictureQuestDatabase  extends RoomDatabase {
 
     private final PictureQuestDatabase db;
 
-    PopulateDbTask(PictureQuestDatabase db){
+    private final Context context;
+
+    PopulateDbTask(PictureQuestDatabase db, Context context){
       this.db = db;
+      this.context = context;
     }
+
+
 
 
     //TODO write a bunch more code to pre-populate the database with all Scenes, possible choices, and choice synonyms.
@@ -69,6 +80,18 @@ public abstract class PictureQuestDatabase  extends RoomDatabase {
       Scene scene1 = new Scene();
       scene1.setScene("Stepping out of the darkness of your home you find yourself in the town square.");
       db.getSceneDao().insert(scene1);
+
+      Gson gson = new GsonBuilder().create();
+      InputStream input = context.getResources().openRawResource(R.raw.jsonchoices);
+      Reader reader = new InputStreamReader(input);
+      Choice[] choices = gson.fromJson(reader, Choice[].class);
+      db.getChoiceDao().insert(choices);
+
+      // TODO inputStream? to read the Json files into the database.
+      // create gson object, iputstream on raw resource file,
+      // Load in scenes, then choices, then synonyms
+
+
       return null;
     }
 

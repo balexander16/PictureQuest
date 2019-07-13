@@ -13,12 +13,18 @@ import androidx.room.PrimaryKey;
             childColumns = "scene_id",
             onDelete = ForeignKey.RESTRICT
         )
-    })
+    },
+    indices = {
+        @Index(value = "authentication_id", unique = true)
+    }
+)
 public class Player {
 
 
   @PrimaryKey(autoGenerate = true)
   private long id;
+  @ColumnInfo(name = "authentication_id")
+  private String authenticationId;
   private String player;
   @ColumnInfo(name = "scene_id", index = true)
   private long sceneId;
@@ -45,5 +51,13 @@ public class Player {
 
   public void setPlayer(String player) {
     this.player = player;
+  }
+
+  public String getAuthenticationId() {
+    return authenticationId;
+  }
+
+  public void setAuthenticationId(String authenticationId) {
+    this.authenticationId = authenticationId;
   }
 }

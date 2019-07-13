@@ -9,18 +9,20 @@ import com.google.gson.annotations.SerializedName;
 
 @Entity(
     indices = {
-        @Index(value = "name", unique = true)
-    },
-    foreignKeys = {
-        @ForeignKey(entity = Scene.class,
-            parentColumns = "id",
-            childColumns = "from_scene_id",
-            onDelete = ForeignKey.CASCADE),
-        @ForeignKey(entity = Scene.class,
-            parentColumns = "id",
-            childColumns = "to_scene_id",
-            onDelete = ForeignKey.CASCADE)
-    })
+        @Index(value = {"from_scene_id","name"}, unique = true)
+    }
+//    ,
+//    foreignKeys = {
+//        @ForeignKey(entity = Scene.class,
+//            parentColumns = "id",
+//            childColumns = "from_scene_id",
+//            onDelete = ForeignKey.CASCADE),
+//        @ForeignKey(entity = Scene.class,
+//            parentColumns = "id",
+//            childColumns = "to_scene_id",
+//            onDelete = ForeignKey.CASCADE)
+//    }
+    )
 public class Choice {
 
   @PrimaryKey(autoGenerate = true)
