@@ -2,7 +2,7 @@
 ![EntityModel](EntityModel.png)
 
 ## DDL for Data Model
-```sqlite
+```sql
 CREATE TABLE IF NOT EXISTS `Player`
 (
     `id`                INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
