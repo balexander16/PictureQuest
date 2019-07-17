@@ -1,8 +1,3 @@
-[Entity Diagram](EntityModel.pdf)
-![EntityModel](EntityModel.png)
-
-## DDL for Data Model
-```sqlite
 CREATE TABLE IF NOT EXISTS `Player`
 (
     `id`                INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -74,5 +69,3 @@ CREATE TABLE IF NOT EXISTS `ChoiceSynonym`
 
 CREATE INDEX `index_ChoiceSynonym_choice_id` ON `ChoiceSynonym` (`choice_id`);
 
-
-```
