@@ -72,20 +72,33 @@ public abstract class PictureQuestDatabase  extends RoomDatabase {
     }
 
 
-
-
     //TODO write a bunch more code to pre-populate the database with all Scenes, possible choices, and choice synonyms.
     @Override
     protected Void doInBackground(Void... voids) {
-      Scene scene1 = new Scene();
-      scene1.setScene("Stepping out of the darkness of your home you find yourself in the town square.");
-      db.getSceneDao().insert(scene1);
+//      Scene scene1 = new Scene();
+//      scene1.setScene("Stepping out of the darkness of your home you find yourself in the town square.");
+//      db.getSceneDao().insert(scene1);
 
+      /*
+      These lines are used to populate the choice entity of the data base, the ordering is important because of
+       the foreign key constraints. Must be scene, then choice, then choicesynonyms.
+       */
       Gson gson = new GsonBuilder().create();
+
+      InputStream inputScene = context.getResources().openRawResource(R.raw.jsonscenes);
+      Reader readerScenes = new InputStreamReader(inputScene);
+      Scene[] scenes = gson.fromJson(readerScenes, Scene[].class);
+      db.getSceneDao().insert(scenes);
+
       InputStream input = context.getResources().openRawResource(R.raw.jsonchoices);
       Reader reader = new InputStreamReader(input);
-      Choice[] choices = gson.fromJson(reader, Choice[].class);
+      Choice[] choices = gson.fromJson(reader, Choice[].class);       //reads an array of objects(Choice) and gson seperates what I need, fucking brilliant
       db.getChoiceDao().insert(choices);
+
+      InputStream inputSynonyms = context.getResources().openRawResource(R.raw.jsonchoicesynonyms);
+      Reader readerSynonyms = new InputStreamReader(inputSynonyms);
+      ChoiceSynonym[] synonyms = gson.fromJson(readerSynonyms, ChoiceSynonym[].class);
+      db.getChoiceSynonymDao().insert(synonyms);
 
       // TODO inputStream? to read the Json files into the database.
       // create gson object, iputstream on raw resource file,

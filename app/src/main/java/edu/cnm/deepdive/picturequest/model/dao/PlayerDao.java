@@ -15,4 +15,5 @@ public interface PlayerDao {
 
   @Query("SELECT * FROM player")
   LiveData<List<Player>> getAll();
+
 }

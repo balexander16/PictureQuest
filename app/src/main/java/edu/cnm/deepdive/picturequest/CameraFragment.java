@@ -79,7 +79,7 @@ import java.util.concurrent.TimeUnit;
 
 
 public class CameraFragment extends Fragment implements View.OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
-   private final String apiKey = "d1c94b09440a4d85a06e700f193fc56b";
+//   private final String apiKey = "d1c94b09440a4d85a06e700f193fc56b";
   /**
    * Conversion from screen rotation to JPEG orientation.
    */
@@ -845,11 +845,9 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
             @NonNull TotalCaptureResult result) {
           showToast("Saved: " + mFile);
           Log.d(TAG, mFile.toString());
-//          new ClarifaiTask(getContext())              //FIXME works here but calls multiple times
-//              .execute(mFile);
           unlockFocus();
-//          new ClarifaiTask(getContext())
-//              .execute(mFile);
+          new ClarifaiTask(getContext())
+              .execute(mFile);
 
           //TODO see if this is the right place for the clarifai task. I think so it works!!!!!!!
 
@@ -861,9 +859,13 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
       mCaptureSession.stopRepeating();
       mCaptureSession.abortCaptures();
       mCaptureSession.capture(captureBuilder.build(), CaptureCallback, null);
+      //TODO another place to try attempting now, nope!
+
     } catch (CameraAccessException e) {
       e.printStackTrace();
     }
+//    new ClarifaiTask(getContext())
+//        .execute(mFile);
   }
 
   /**
@@ -906,8 +908,8 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
     switch (view.getId()) {
       case R.id.picture: {
         takePicture();
-        new ClarifaiTask(getContext())
-          .execute(mFile);
+//        new ClarifaiTask(getContext())          TODO this was the original spot that worked have tried another spot to see if bug is fixed
+//          .execute(mFile);                       TODO get rid of this placeholder if correct spot is found.
         break;
       }
       case R.id.info: {
@@ -950,7 +952,6 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
       mImage = image;
       mFile = file;
       this.context = context;
-      //TODO try here with ClarifaiTask
     }
 
     @Override
@@ -975,9 +976,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
           }
         }
       }
-      // TODO is this where clarifai call makes the most sense using mFile? This also works.
-//      new ClarifaiTask(context)
-//          .execute(mFile);
+
     }
 
   }

@@ -9,19 +9,17 @@ import com.google.gson.annotations.SerializedName;
 
 @Entity(
     indices = {
-        @Index(value = {"from_scene_id","name"}, unique = true)
+        @Index(value = {"from_scene_id","name"}, unique = true)},
+    foreignKeys = {
+        @ForeignKey(entity = Scene.class,
+            parentColumns = "id",
+            childColumns = "from_scene_id",
+            onDelete = ForeignKey.CASCADE),
+        @ForeignKey(entity = Scene.class,
+            parentColumns = "id",
+            childColumns = "to_scene_id",
+            onDelete = ForeignKey.CASCADE)
     }
-//    ,
-//    foreignKeys = {
-//        @ForeignKey(entity = Scene.class,
-//            parentColumns = "id",
-//            childColumns = "from_scene_id",
-//            onDelete = ForeignKey.CASCADE),
-//        @ForeignKey(entity = Scene.class,
-//            parentColumns = "id",
-//            childColumns = "to_scene_id",
-//            onDelete = ForeignKey.CASCADE)
-//    }
     )
 public class Choice {
 
@@ -67,4 +65,9 @@ public class Choice {
   public void setName(String name) {
     this.name = name;
   }
+
+  // TODO Add another field to add some descriptive text into the choice scene.
+  //        Such as walk towards the wagon etc.... if necessary.
+
+
 }

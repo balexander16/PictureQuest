@@ -1,0 +1,91 @@
+[
+  {
+    "id": 1,
+    "scene": "As you walk outside of your home you are standing in the town square \r\n Please take a picture of a city setting."
+  },
+
+  {
+    "id": 2,
+    "scene": "The tavern across the street is already busy, the door swings closed as a patron walks out. 'Harold's giving out free drinks!' The man says to you. You walk inside to get your free drink \r\n Please take a picture indoors"
+  },
+
+  {
+    "id": 3,
+    "scene": "As you approach the bar, Harold the barkeep sees you and says, 'free drinks today to anyone who is willing to hear me out' As you sit down to get your drink Harold says 'my daughter has ran off in the night with some fool names Drax, if you find him there will be an endless tab for you.' You agree and finish your drink then walk outside.\r\n Please take a picture in a city setting."
+  },
+
+  {
+    "id": 4,
+    "scene": "Upon entering the tavern a hooded person calls out to you from the corner, 'Come here I have something that would interest you', as you approach a pale hand reaches out from his cloak holding a shimmering gem. 'Theres a cave in the woods outside of town with more of these then you could ever image. If you can bring me back two more the rest is yours, I can tell you the location.' you cautiously agree agree to their terms and leave the tavern and walk into the woods. Please take a picture in a nature setting."
+  },
+
+  {
+    "id": 5,
+    "scene": "An old wagon, slows down in front of you as the horse neighs. 'Where you heading traveler?' says the haggard man in the seat, 'Care to join me to Riverfell' I could always use an extra traveler just in case of bandits. You agree and walk along side the wagon up the road. \r\n Please take a picture in a nature setting."
+  },
+
+  {
+    "id": 6,
+    "scene": "As you walk through the woods, a rustling of leafs peaks your attention. Out of the brushes you hear a low growl, a grizzly bear comes lunging through the thicket of leaves at you. \r\n Please take a picture of some of your belongings."
+  },
+
+  {
+    "id": 7,
+    "scene": "The long journey you have been going on is weighing upon you, as you rest your head for a moment glancing down upon the ground a flutter of light takes your eye. You go to examine and move some of the leaves around and find some beautiful stones underneath them. You recall some rumors in town of people finding gem's in a local mine and realize you must be close by. \r\n Please take a picture in a nature setting."
+  },
+
+  {
+    "id": 8,
+    "scene": "Outside of the bar you hear a few old crones gossiping, 'Drax and Lola sure do look like lovebirds eh?' one says to another. The other woman replies 'they sure do but Lola's father is having none of that business! I hear that they ran off to find that mine everyone's been talking about so they could pay to leave this town and get away.' You decide to try and find a way to this mine and beginning looking for the path in the local woods. \r\n Please take a picture in a nature setting."
+  },
+
+  {
+    "id": 9,
+    "scene": "Roaming through the forest you can't find any path at all, and decide to begin just going northerly as best you can. The shadows and trees slowly begin blending together in your mind, you feel like you've seen the same tree hundreds of times but have no idea which way to go to head back to town. Your stomach swells into a not as it slowly dawns upon you that you are lost beyond all hope. \r\n Please take a picture in a nature setting."
+  },
+
+  {
+    "id": 10,
+    "scene": "A few yards off of a the path you have taken through the woods since childhood, you notice a group of branches that have been broken a the leaves around them broken down from the wear of boots upon them. You realize this as a fresh path and hope it leads towards the mine you have been looking for. After walking along this for nearly an hour the trees open up into a clearing and you see an opening into a cave in the side of a hill. You cautiously enter the cave. \r\n Please take a picture indoors"
+  },
+
+  {
+    "id": 11,
+    "scene": "The shadows dance around the cave illuminated from the the light of your torch. You go down into the cave for what feels like hours, taking twists and turns, shimmying through narrow openings and dropping down holes. Eventually the light of you torch reflects back into your eyes with a glimmering radiance. Before you lies a wall of the cave with thousands of gems encrusted along its surface. You take out a pick axe and begin taking as many gems as you can fit into a bag. After hours of work you have grown weary and decide to head back to town with all of your bounty to rest well with your new found wealth \r\n Congratulations! You found the treasure."
+  },
+
+  {
+    "id": 12,
+    "scene": "Looking around the trees now you see a black bird perched upon a tree, the bird floats down off the branch and perches upon your shoulder. You start questioning your own mind as you hear a voice in your eye until you realize the bird is speaking to you, 'Caw, hello stranger, could you help a weary traveler find their son? Don't be alarmed, I'm only a bird now because traveling is more convenient you see, caw.' Shaking you head you stare longer at the bird until it speaks again, 'I've searched the woods for days and can't find him anywhere I do know there is a cave nearby, could you help me by searching the cave.' You cautiously agree and walk into the woods in the direction the bird told you the cave might be. \r\n Please take a picture of a nature setting."
+  },
+
+  {
+    "id": 13,
+    "scene": "Whoosh, the giant paw of the grizzly bear, swipes incredibly close to your face as you dive to the side. You quickly regain your feet and begin running as fast as you can through the forest. Branches and leaves scrape across your face and body leaving cuts and bruises. You keep running but realize your hear nothing following behind after you. You take a moment to gather yourself then decide to go deeper into the woods, rather cautiously this time though. \r\n Please take a picture in a nature setting."
+  },
+
+  {
+    "id": 14,
+    "scene": "Pulling out a knife from your belt, you quickly brandish it and brace yourself for the impact of the ferocious bear. His giant paw swipes across knocking the knife out of your hand and ripping the flesh clean off of your arm. It grabs you with its paws and pins you to the ground. Raking with its claws and biting with its jaws the pool of blood grows larger and deeper around you as your vision fades to black. \r\n You shouldn't try to fight bears.... You are dead. Revive from home."
+  },
+
+  {
+    "id": 15,
+    "scene": "Darkness is slowly setting upon the woods, as you realize you are so far lost in the woods with very little supplies to survive through the night. You decide to try to build a fire before it gets too cold. Ranging about you find some sticks to build a fire. After quite a large amount of effort and time you are able to light a fire just before darkness swallows up the woods. The pleasant sound of birds has faded out and everything is suddenly ominous and threatening. You hear a twig snap to your left and whip around to see a man. 'Are you lost? These woods are no place to stay for the night, you should come with me back to the village. You graciously agree and put out the fire and follow the man back to town. \r\n You were luckily saved in the night from certain death!"
+  },
+
+  {
+    "id": 16,
+    "scene": "Lighting a torch, you venture into the cave. Light flickers off of the stalagmites above you as you venture down below deeper. Spiralling and twisting deeper you slow your steps as you hear voices from down a corridor. You approach slowly and hear a voice. 'Don't you come closer! I have a sword and will defend my love Lola until the bitter end!' you call out explaining that you have been sent to find them and stop them from leaving. The man calls out again, 'you may come closer friend but we are never going back' As you walk into the cavern they are in you see a man and woman dressed in ragged clothing holding each other. You try to convince them to come with you to town. \r\n Please take a picture of some of your belongings."
+  },
+
+  {
+    "id": 17,
+    "scene": "Drax pulls out a quill and some parchment and begins writing a letter. 'I'm sorry but we can't return to our parents, please take these letters. Return one to Layla's father, Harold the bartender. The other can you please leave outside your home with some fruit. My mother is a druid in a nearby coven, she wants me to follow in her footsteps but our love is to strong!' After a few minutes of writing Drax hands you the notes. Then the two of them stand up and wish you a pleasant day. 'Lets go my love we will find the treasure and live happily forever! \r\n Taking the letters you journey back to town delivering the letters as Drax told you, then go home to sleep for the night."
+  },
+
+  {
+    "id": 18,
+    "scene": "After a few minutes of telling Drax and Lola that their families want them to be happy and will eventually understand and support their love, the two look upon you and say. 'Thank you for your sage advice traveller, you're right that family is important and we would be foolish to leave them behind forever. They gather their belongings and join you out of the cave and back into town \r\n Congratulations! You found the lovers and convinced them to return to town. After taking them back to the bar you go back home to sleep for the night."
+  }
+]

@@ -13,6 +13,9 @@ public interface ChoiceSynonymDao {
   @Insert
   void insert(ChoiceSynonym choiceSynonym);
 
+  @Insert
+  void insert(ChoiceSynonym... choicesSynonyms);
+
   @Query("SELECT * FROM choicesynonym")
   LiveData<List<ChoiceSynonym>> getAll();
 

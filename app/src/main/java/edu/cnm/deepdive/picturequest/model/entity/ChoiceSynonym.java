@@ -12,14 +12,15 @@ import com.google.gson.annotations.SerializedName;
             parentColumns = "id",
             childColumns = "choice_id",
             onDelete = ForeignKey.CASCADE)
-    })
+    }
+    )
 public class ChoiceSynonym {
 
   @PrimaryKey(autoGenerate = true)
   private long id;
   private String name;
-  @ColumnInfo(name="synonym_name", index = true)
-  private String synonymName;
+//  @ColumnInfo(name="synonym_name", index = true)          Don't need these at all....
+//  private String synonymName;
   @SerializedName("to")
   @ColumnInfo(name="choice_id", index = true)
   private long choiceId;
@@ -48,11 +49,11 @@ public class ChoiceSynonym {
     this.name = name;
   }
 
-  public String getSynonymName() {
-    return synonymName;
-  }
-
-  public void setSynonymName(String synonymName) {
-    this.synonymName = synonymName;
-  }
+//  public String getSynonymName() {
+//    return synonymName;                           Dont think I need these at all.....
+//  }
+//
+//  public void setSynonymName(String synonymName) {
+//    this.synonymName = synonymName;
+//  }
 }

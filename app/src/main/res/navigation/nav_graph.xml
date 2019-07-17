@@ -13,7 +13,9 @@
   <fragment
     android:id="@+id/story_home"
     android:label="SceneFragment"
-    android:name="edu.cnm.deepdive.picturequest.SceneFragment"/>
+    android:name="edu.cnm.deepdive.picturequest.SceneFragment">
+    <argument android:name="scene_id" app:argType="long" android:defaultValue="1L"/>
+  </fragment>
   <fragment
     android:id="@+id/navigation_choice"
     android:name="edu.cnm.deepdive.picturequest.ChoiceFragment"

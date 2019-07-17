@@ -11,15 +11,15 @@ import java.util.List;
 
 public class SceneViewModel extends AndroidViewModel {
 
-  private LiveData<List<Scene>> scene;
+  private LiveData<Scene> scene;
 
   public SceneViewModel(@NonNull Application application) {
     super(application);
   }
 
-  public LiveData<List<Scene>> getSceneLiveData() {
+  public LiveData<Scene> getScene(long id) {
     if (scene == null) {
-      scene = PictureQuestDatabase.getInstance(getApplication()).getSceneDao().getAll();
+      scene = PictureQuestDatabase.getInstance(getApplication()).getSceneDao().findById(id);
     }
     return scene;
   }
