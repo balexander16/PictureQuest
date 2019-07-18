@@ -29,8 +29,6 @@ import java.util.List;
 
 public class ClarifaiTask extends AsyncTask<File, Void, List<ClarifaiOutput<Concept>>> {
 
-  // d4db789e7e4d4b10ad75d7113be86fee   TODO resource API key
-
   private Context context;
 
   public ClarifaiTask(Context context) {
@@ -39,7 +37,7 @@ public class ClarifaiTask extends AsyncTask<File, Void, List<ClarifaiOutput<Conc
 
   @Override
   protected List<ClarifaiOutput<Concept>> doInBackground(File... files) {
-    ClarifaiClient client = new ClarifaiBuilder("d4db789e7e4d4b10ad75d7113be86fee").buildSync();
+    ClarifaiClient client = new ClarifaiBuilder(context.getString(R.string.api_key)).buildSync();
     ClarifaiResponse<List<ClarifaiOutput<Concept>>> response =
         client.getDefaultModels().generalModel().predict()
             .withInputs(ClarifaiInput.forImage(files[0])).executeSync();

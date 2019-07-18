@@ -2,6 +2,7 @@ package edu.cnm.deepdive.picturequest.model.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import edu.cnm.deepdive.picturequest.model.entity.Scene;
@@ -21,4 +22,7 @@ public interface SceneDao {
 
   @Query("SELECT * FROM scene WHERE id = :id")
   LiveData<Scene> findById(long id);
+
+  @Delete
+  int delete(Scene... scenes);
 }

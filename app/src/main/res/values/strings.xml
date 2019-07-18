@@ -10,7 +10,7 @@
   <string name="camera_error">This device doesn\'t support Camera2 API.</string>
   <string name="intro_message">Intro Messsage!</string>
 
-  <string name="api_key">d1c94b09440a4d85a06e700f193fc56b</string>
+
 
   <!--  Possibly unnecessary strings-->
   <string name="error">Error while contacting API</string>
@@ -75,6 +75,7 @@
   <string name="take_picture">Take picture</string>
   <string name="authentication_error">Unable to Authenticate User</string>
   <string name="sign_out">Sign Out</string>
+  <string name="api_key">d4db789e7e4d4b10ad75d7113be86fee</string>
 
 
 </resources>

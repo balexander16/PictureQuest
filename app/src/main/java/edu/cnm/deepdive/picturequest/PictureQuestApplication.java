@@ -14,6 +14,11 @@ public class PictureQuestApplication extends Application {
   public void onCreate() {
     super.onCreate();
     Stetho.initializeWithDefaults(this);
+    new Thread(() -> {
+      PictureQuestDatabase.getInstance(this).getSceneDao().delete();
+    }).start();
     GoogleSignInService.setContext(this);
   }
+
+
 }

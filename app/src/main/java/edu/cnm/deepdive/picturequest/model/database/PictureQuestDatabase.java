@@ -100,15 +100,11 @@ public abstract class PictureQuestDatabase  extends RoomDatabase {
       ChoiceSynonym[] synonyms = gson.fromJson(readerSynonyms, ChoiceSynonym[].class);
       db.getChoiceSynonymDao().insert(synonyms);
 
-      // TODO inputStream? to read the Json files into the database.
-      // create gson object, iputstream on raw resource file,
-      // Load in scenes, then choices, then synonyms
-
 
       return null;
     }
 
-    // TODO take file from res.
+
   }
 
 // TODO create a method that will extract from the res/raw json files.

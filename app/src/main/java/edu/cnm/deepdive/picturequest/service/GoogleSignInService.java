@@ -1,10 +1,14 @@
 package edu.cnm.deepdive.picturequest.service;
 
 import android.app.Application;
+import android.content.Context;
+import android.os.AsyncTask;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import edu.cnm.deepdive.picturequest.model.database.PictureQuestDatabase;
+import edu.cnm.deepdive.picturequest.model.entity.Player;
 
 public class GoogleSignInService {
 
@@ -19,6 +23,7 @@ public class GoogleSignInService {
         .requestProfile()
         .build();
     client = GoogleSignIn.getClient(context, options);
+
   }
 
   public static void setContext(Application context) {
