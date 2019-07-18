@@ -19,39 +19,45 @@ import edu.cnm.deepdive.picturequest.service.GoogleSignInService;
 
 public class MainActivity extends AppCompatActivity {
 
+  private NavController navController;
+  private BottomNavigationView bottomNav;
   private TextView mTextMessage;
-
-  private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-      = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-      switch (item.getItemId()) {
-        case R.id.story_home:
-          mTextMessage.setText(R.string.title_home);
-          return true;
-        case R.id.navigation_choice:
-          mTextMessage.setText(R.string.title_dashboard);
-          return true;
-        case R.id.navigation_camera:
-          mTextMessage.setText(R.string.title_notifications);
-          return true;
-      }
-      return false;
-    }
-  };
+  private long playerId;
+  private long sceneId;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    playerId = getIntent().getLongExtra("player_id", 0);
     mTextMessage = (TextView) findViewById(R.id.message);
-
-    NavController navController = Navigation.findNavController(this,R.id.nav_host_fragment);
-    BottomNavigationView bottomNav = findViewById(R.id.navigation);
+    navController = Navigation.findNavController(this,R.id.nav_host_fragment);
+    bottomNav = findViewById(R.id.navigation);
     NavigationUI.setupWithNavController(bottomNav, navController);
 
   }
+
+//  @Override
+//  public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//    boolean handled = true;
+//    Bundle args = new Bundle();
+//    switch (item.getItemId()) {
+//      case R.id.story_home:
+//        mTextMessage.setText(R.string.title_home);
+//        break;
+//      case R.id.navigation_choice:
+//        mTextMessage.setText(R.string.title_dashboard);
+//        break;
+//      case R.id.navigation_camera:
+//
+//        navController.navigate(R.id.navigation_camera);
+//        mTextMessage.setText(R.string.title_notifications);
+//        break;
+//      default:
+//        handled = false;
+//    }
+//    return handled;
+//  }
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
@@ -80,6 +86,18 @@ public class MainActivity extends AppCompatActivity {
       intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
       startActivity(intent);
     });
+  }
+
+  public long getPlayerId() {
+    return playerId;
+  }
+
+  public long getSceneId() {
+    return sceneId;
+  }
+
+  public void setSceneId(long sceneId) {
+    this.sceneId = sceneId;
   }
 
 }

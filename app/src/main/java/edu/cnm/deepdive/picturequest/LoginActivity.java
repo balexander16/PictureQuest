@@ -102,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
 //    if (player == null ) {
 //      new PopulatePlayerTask().execute();         FIXME I dont think I need this at all....
 //      }
-      player.setPlayer(account.getId());
+//      player.setPlayer(account.getId());
       return player;
     }
 

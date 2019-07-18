@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+import edu.cnm.deepdive.picturequest.viewmodel.ChoiceViewModel;
 
 public class ChoiceFragment extends Fragment {
 
@@ -24,9 +26,30 @@ public class ChoiceFragment extends Fragment {
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
-    return super.onCreateView(inflater, container, savedInstanceState);
+    Bundle args = getArguments();
+    long playerId = args.getLong("player_id");
+    long sceneId = args.getLong("scene_id");
+
+
+    final View view = inflater.inflate(R.layout.fragment_choice, container, false);
+
+    final ChoiceViewModel viewModel = ViewModelProviders.of(getActivity()).get(ChoiceViewModel.class);
+
+
+//    viewModel.getChoice(sceneId)
+
+
+
+
+
+
+
+
+
+    return view;
   }
 
-  //TODO Make a set of 1 or more buttons appear dependant upon inputs received through the clarifai api
+  //TODO set buttons display to be the available choices to the scene we are currently on and then onClick go to the next scene...........
+  // TODO bundle?????
 
 }

@@ -13,7 +13,8 @@ public interface InputDao {
   @Insert
   void insert(Input input);
 
-  @Query("SELECT * FROM input")
+  @Query("SELECT * FROM  input")
   LiveData<List<Input>> getAll();
+
 
 }

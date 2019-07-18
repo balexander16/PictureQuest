@@ -17,6 +17,22 @@ public interface ChoiceDao {
   void insert(Choice... choices);
 
   @Query("SELECT * FROM choice")
-  LiveData<List<Choice>>getAll();
+  LiveData<List<Choice>> getAll();
+
+  @Query("SELECT * FROM choice WHERE id = :id")
+  LiveData<Choice> findById(long id);
+
+  @Query(""
+      + "SELECT DISTINCT "
+      + "c.* "
+      + "FROM Choice c "
+      + "LEFT JOIN ChoiceSynonym s"
+      + " ON s.choice_id = c.id "
+      + "WHERE "
+      + "c.from_scene_id = :sceneId "
+      + "AND "
+      + "(c.name in (:objects) OR s.name in (:objects));"
+  )
+  LiveData<List<Choice>> getRelevantChoices(long sceneId, List<String> objects);
 
 }

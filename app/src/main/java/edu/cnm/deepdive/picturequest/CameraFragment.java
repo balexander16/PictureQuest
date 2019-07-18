@@ -87,6 +87,8 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
   private static final int REQUEST_CAMERA_PERMISSION = 1;
   private static final String FRAGMENT_DIALOG = "dialog";
 
+  private long playerId;
+  private long sceneId;
 
 
   static {
@@ -431,6 +433,10 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
+    // TODO take in the bundle of information of what the current user and scene is?
+    playerId = this.getArguments().getLong("player_id", 1);
+    sceneId = this.getArguments().getLong("scene_id",1);
+
     return inflater.inflate(R.layout.fragment_camera, container, false);
   }
 
@@ -438,7 +444,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
   public void onViewCreated(final View view, Bundle savedInstanceState) {
     view.findViewById(R.id.picture).setOnClickListener(this);
     view.findViewById(R.id.info).setOnClickListener(this);
-    mTextureView = (AutoFitTextureView) view.findViewById(R.id.texture);
+    mTextureView = view.findViewById(R.id.texture);
   }
 
   @Override
@@ -846,7 +852,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
           showToast("Saved: " + mFile);
           Log.d(TAG, mFile.toString());
           unlockFocus();
-          new ClarifaiTask(getContext())
+          new ClarifaiTask(getContext(), playerId, sceneId)
               .execute(mFile);
 
           //TODO see if this is the right place for the clarifai task. I think so it works!!!!!!!
