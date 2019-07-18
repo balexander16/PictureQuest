@@ -2,7 +2,7 @@
 
 * [User Stories](docs/user-stories.md)
 * [Wireframes](docs/wireframes.md)
-* [Entity Relationship Diagram](docs/entitymodel.md)
+* [Data Model Documentation](docs/entitymodel.md)
 * [Milestone Page](docs/milestone.md)
 
 ## Personal Android Proect:
