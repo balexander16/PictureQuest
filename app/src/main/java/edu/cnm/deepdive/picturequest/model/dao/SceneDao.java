@@ -12,10 +12,10 @@ import java.util.List;
 public interface SceneDao {
 
   @Insert
-  void insert(Scene scene);
+  long insert(Scene scene);
 
   @Insert
-  void insert(Scene... scenes);
+  List<Long> insert(Scene... scenes);
 
   @Query("SELECT * FROM scene")
   LiveData<List<Scene>> getAll();

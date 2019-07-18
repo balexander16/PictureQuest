@@ -1,6 +1,7 @@
 package edu.cnm.deepdive.picturequest.model.entity;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -10,6 +11,7 @@ public class Scene {
   @PrimaryKey(autoGenerate = true)
   private long id;
 
+  @NonNull
   private String scene;
 
   public long getId() {
