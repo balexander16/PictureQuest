@@ -70,4 +70,8 @@ public class Choice {
   //        Such as walk towards the wagon etc.... if necessary.
 
 
+  @Override
+  public String toString() {
+    return name;
+  }
 }

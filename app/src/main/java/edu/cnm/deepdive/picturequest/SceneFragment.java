@@ -17,6 +17,7 @@ import edu.cnm.deepdive.picturequest.viewmodel.SceneViewModel;
 
 public class SceneFragment extends Fragment {
 
+  private long sceneId;
 
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
@@ -25,24 +26,13 @@ public class SceneFragment extends Fragment {
 
     final SceneViewModel viewModel = ViewModelProviders.of(getActivity()).get(SceneViewModel.class);
 
+    sceneId =((MainActivity)getActivity()).getSceneId();
+    viewModel.setSceneId(sceneId);
+  // TODO
 
-    // TODO change the arguments based upon the scene and pass this around?
-    Bundle args = getArguments();
-    long sceneId = args.getLong("scene_id", 1);
-    args.putLong("scene_id", sceneId);
-    long playerId = args.getLong("player_id", 1);
-    args.putLong("player_id", playerId);
-
-    ChoiceFragment choice = new ChoiceFragment();
-    choice.setArguments(args);
-
-    CameraFragment camera = new CameraFragment();
-    camera.setArguments(args);
-
-
-    viewModel.getScene(sceneId).observe(this, scene -> {
+    viewModel.getScene().observe(this, scene -> {
       final ArrayAdapter<Scene> adapter =
-          new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1,new Scene[] {scene});
+          new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1,new Scene[] {scene});
           final ListView sceneListView = view.findViewById(R.id.scene_list);
           sceneListView.setAdapter(adapter);
 
@@ -52,7 +42,7 @@ public class SceneFragment extends Fragment {
 
   }
 
-  //TODO display current scene we are on.
+  //TODO display current scene we are on......
 
 
 }

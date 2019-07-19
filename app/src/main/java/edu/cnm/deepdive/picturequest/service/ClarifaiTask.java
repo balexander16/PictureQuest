@@ -32,13 +32,13 @@ with a possible choice for the scene we are currently at.*/
 public class ClarifaiTask extends AsyncTask<File, Void, List<ClarifaiOutput<Concept>>> {
 
   private Context context;
-  private long playerId;            //TODO added this in maybe unnecessarily
+  private long playerId;
   private long sceneId;
 
   public ClarifaiTask(Context context, long playerId, long sceneId) {
     this.context = context;
-    this.playerId = playerId;           //FIXME ditto as above
     this.sceneId = sceneId;
+    this.playerId = playerId;
   }
 
   @Override
@@ -57,7 +57,7 @@ public class ClarifaiTask extends AsyncTask<File, Void, List<ClarifaiOutput<Conc
           Input newInput = new Input();
           newInput.setName(name);
           newInput.setSceneId(sceneId);                    //    TODO how to pass the exact scene we are on? More SQL?
-          newInput.setPlayerId(playerId);                   //    TODO how to set it as the current player from here outside of a fragment?
+          newInput.setPlayerId(playerId);                  //    TODO how to set it as the current player from here outside of a fragment?
           db.getInputDao().insert(newInput);
         }
       }

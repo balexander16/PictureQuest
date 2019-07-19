@@ -33,6 +33,6 @@ public interface ChoiceDao {
       + "AND "
       + "(c.name in (:objects) OR s.name in (:objects));"
   )
-  LiveData<List<Choice>> getRelevantChoices(long sceneId, List<String> objects);
+  LiveData<List<Choice>> getRelevantChoices(long sceneId, List<String> objects);          //FIXME if not correct
 
 }

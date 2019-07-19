@@ -25,4 +25,5 @@ public interface SceneDao {
 
   @Delete
   int delete(Scene... scenes);
+
 }

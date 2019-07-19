@@ -434,8 +434,8 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     // TODO take in the bundle of information of what the current user and scene is?
-    playerId = this.getArguments().getLong("player_id", 1);
-    sceneId = this.getArguments().getLong("scene_id",1);
+    playerId = ((MainActivity) getActivity()).getPlayerId();
+    sceneId =  ((MainActivity) getActivity()).getSceneId();
 
     return inflater.inflate(R.layout.fragment_camera, container, false);
   }
@@ -852,8 +852,8 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
           showToast("Saved: " + mFile);
           Log.d(TAG, mFile.toString());
           unlockFocus();
-          new ClarifaiTask(getContext(), playerId, sceneId)
-              .execute(mFile);
+/*          new ClarifaiTask(getContext(), playerId, sceneId)
+              .execute(mFile);*/
 
           //TODO see if this is the right place for the clarifai task. I think so it works!!!!!!!
 
@@ -914,8 +914,10 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
     switch (view.getId()) {
       case R.id.picture: {
         takePicture();
-//        new ClarifaiTask(getContext())          TODO this was the original spot that worked have tried another spot to see if bug is fixed
-//          .execute(mFile);                       TODO get rid of this placeholder if correct spot is found.
+        new ClarifaiTask(getContext(), playerId, sceneId)
+            .execute(mFile);
+//                                               TODO this was the original spot that worked have tried another spot to see if bug is fixed
+//                                               TODO get rid of this placeholder if correct spot is found.
         break;
       }
       case R.id.info: {

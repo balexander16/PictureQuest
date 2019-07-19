@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
@@ -14,7 +15,9 @@ import clarifai2.api.ClarifaiBuilder;
 import clarifai2.api.ClarifaiClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import edu.cnm.deepdive.picturequest.model.database.PictureQuestDatabase;
+import edu.cnm.deepdive.picturequest.model.entity.Player;
 import edu.cnm.deepdive.picturequest.service.GoogleSignInService;
+import edu.cnm.deepdive.picturequest.viewmodel.MainViewModel;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -24,17 +27,30 @@ public class MainActivity extends AppCompatActivity {
   private TextView mTextMessage;
   private long playerId;
   private long sceneId;
+  private Player player;
+
+  private MainViewModel viewModel;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    playerId = getIntent().getLongExtra("player_id", 0);
-    mTextMessage = (TextView) findViewById(R.id.message);
+    setSceneId(getIntent().getLongExtra("scene_id", 1));
+    playerId = getIntent().getLongExtra("player_id", 1);
+    mTextMessage = findViewById(R.id.message);
     navController = Navigation.findNavController(this,R.id.nav_host_fragment);
     bottomNav = findViewById(R.id.navigation);
     NavigationUI.setupWithNavController(bottomNav, navController);
 
+    viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+    viewModel.setPlayerId(playerId);
+    viewModel.getPlayer().observe(this, (player) -> {
+      this.player = player;
+      if (player.getSceneId() != sceneId) {
+        setPlayerScene(sceneId, player);
+      }
+      clearSceneInputs(sceneId, player);
+    });
   }
 
 //  @Override
@@ -98,6 +114,18 @@ public class MainActivity extends AppCompatActivity {
 
   public void setSceneId(long sceneId) {
     this.sceneId = sceneId;
+    if (player != null) {
+      setPlayerScene(sceneId, player);
+      clearSceneInputs(sceneId, player);
+    }
   }
 
+  private void setPlayerScene(long sceneId, Player player) {
+    player.setSceneId(sceneId);
+    viewModel.updatePlayer(player);
+  }
+
+  private void clearSceneInputs(long sceneId, Player player) {
+    viewModel.clearInputs(sceneId, player.getId());
+  }
 }

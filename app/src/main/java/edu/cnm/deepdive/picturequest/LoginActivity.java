@@ -59,10 +59,11 @@ public class LoginActivity extends AppCompatActivity {
     startActivityForResult(intent, LOGIN_REQUEST_CODE);
   }
 
-  private void switchToMain(long playerId) {
+  private void switchToMain(long playerId, long sceneId) {
     Intent intent = new Intent(this, MainActivity.class);
     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
     intent.putExtra("player_id", playerId);
+    intent.putExtra("scene_id", sceneId);
     startActivity(intent);
   }
 
@@ -86,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onPostExecute(Player player) {
-      switchToMain(player.getId());
+      switchToMain(player.getId(), player.getSceneId());
     }
 
   }
@@ -108,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onPostExecute(Player player) {
-      switchToMain(player.getId());
+      switchToMain(player.getId(), player.getSceneId());
     }
   }
 
