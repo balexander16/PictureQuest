@@ -81,6 +81,7 @@ public class ChoiceFragment extends Fragment {
     NavController navController = Navigation
         .findNavController(getActivity(), R.id.nav_host_fragment);
     navController.navigate(R.id.story_home);
+
   }
 
   //TODO set buttons display to be the available choices to the scene we are currently on and then onClick go to the next scene...........

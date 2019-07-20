@@ -20,7 +20,7 @@ public class MainViewModel extends AndroidViewModel {
         PictureQuestDatabase.getInstance(getApplication()).getPlayerDao().findById(v));
   }
 
-  public void setPlayerId(Long id) {
+  public void setPlayerId(long id) {
     filterLiveData.setValue(id);
   }
 

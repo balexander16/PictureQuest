@@ -1,5 +1,11 @@
 apply plugin: 'com.android.application'
 
+def getServiceProperty(String property) {
+    Properties properties = new Properties();
+    properties.load(new FileInputStream("../keys/clarifai.properties"));
+    return String.format("\"%s\"", properties.getProperty(property));
+}
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -9,6 +15,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "API_KEY", getServiceProperty("api_key")
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]

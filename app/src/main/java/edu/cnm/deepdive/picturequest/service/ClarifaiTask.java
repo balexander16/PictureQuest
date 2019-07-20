@@ -16,6 +16,7 @@ import clarifai2.dto.model.output.ClarifaiOutput;
 import clarifai2.dto.prediction.Concept;
 import com.google.gson.InstanceCreator;
 import com.google.gson.annotations.SerializedName;
+import edu.cnm.deepdive.picturequest.BuildConfig;
 import edu.cnm.deepdive.picturequest.CameraFragment;
 import edu.cnm.deepdive.picturequest.MainActivity;
 import edu.cnm.deepdive.picturequest.R;
@@ -43,7 +44,7 @@ public class ClarifaiTask extends AsyncTask<File, Void, List<ClarifaiOutput<Conc
 
   @Override
   protected List<ClarifaiOutput<Concept>> doInBackground(File... files) {
-    ClarifaiClient client = new ClarifaiBuilder(context.getString(R.string.api_key)).buildSync();
+    ClarifaiClient client = new ClarifaiBuilder(BuildConfig.API_KEY).buildSync();
     ClarifaiResponse<List<ClarifaiOutput<Concept>>> response =
         client.getDefaultModels().generalModel().predict()
             .withInputs(ClarifaiInput.forImage(files[0])).executeSync();
@@ -56,8 +57,8 @@ public class ClarifaiTask extends AsyncTask<File, Void, List<ClarifaiOutput<Conc
           String name = datum.name();
           Input newInput = new Input();
           newInput.setName(name);
-          newInput.setSceneId(sceneId);                    //    TODO how to pass the exact scene we are on? More SQL?
-          newInput.setPlayerId(playerId);                  //    TODO how to set it as the current player from here outside of a fragment?
+          newInput.setSceneId(sceneId);
+          newInput.setPlayerId(playerId);
           db.getInputDao().insert(newInput);
         }
       }
@@ -71,7 +72,7 @@ public class ClarifaiTask extends AsyncTask<File, Void, List<ClarifaiOutput<Conc
   @Override
   protected void onPostExecute(List<ClarifaiOutput<Concept>> response) {
     //TODO this is for UI updates upon success
-
+    // Nothing really
   }
 
   @Override

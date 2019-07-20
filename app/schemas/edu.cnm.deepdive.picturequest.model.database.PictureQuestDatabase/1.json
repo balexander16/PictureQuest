@@ -1,0 +1,345 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "dbe79e75dd8934242aad6dd36f26d824",
+    "entities": [
+      {
+        "tableName": "Player",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `authentication_id` TEXT, `player` TEXT, `scene_id` INTEGER NOT NULL, FOREIGN KEY(`scene_id`) REFERENCES `Scene`(`id`) ON UPDATE NO ACTION ON DELETE RESTRICT )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "authenticationId",
+            "columnName": "authentication_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "player",
+            "columnName": "player",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sceneId",
+            "columnName": "scene_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_Player_authentication_id",
+            "unique": true,
+            "columnNames": [
+              "authentication_id"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_Player_authentication_id` ON `${TABLE_NAME}` (`authentication_id`)"
+          },
+          {
+            "name": "index_Player_scene_id",
+            "unique": false,
+            "columnNames": [
+              "scene_id"
+            ],
+            "createSql": "CREATE  INDEX `index_Player_scene_id` ON `${TABLE_NAME}` (`scene_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Scene",
+            "onDelete": "RESTRICT",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "scene_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "Scene",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `scene` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "scene",
+            "columnName": "scene",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Input",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT COLLATE NOCASE, `value` INTEGER NOT NULL, `date` INTEGER, `player_id` INTEGER NOT NULL, `scene_id` INTEGER NOT NULL, FOREIGN KEY(`player_id`) REFERENCES `Player`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`scene_id`) REFERENCES `Scene`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "value",
+            "columnName": "value",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "playerId",
+            "columnName": "player_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sceneId",
+            "columnName": "scene_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_Input_name",
+            "unique": false,
+            "columnNames": [
+              "name"
+            ],
+            "createSql": "CREATE  INDEX `index_Input_name` ON `${TABLE_NAME}` (`name`)"
+          },
+          {
+            "name": "index_Input_player_id",
+            "unique": false,
+            "columnNames": [
+              "player_id"
+            ],
+            "createSql": "CREATE  INDEX `index_Input_player_id` ON `${TABLE_NAME}` (`player_id`)"
+          },
+          {
+            "name": "index_Input_scene_id",
+            "unique": false,
+            "columnNames": [
+              "scene_id"
+            ],
+            "createSql": "CREATE  INDEX `index_Input_scene_id` ON `${TABLE_NAME}` (`scene_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Player",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "player_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "Scene",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "scene_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "Choice",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT COLLATE NOCASE, `from_scene_id` INTEGER NOT NULL, `to_scene_id` INTEGER NOT NULL, FOREIGN KEY(`from_scene_id`) REFERENCES `Scene`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`to_scene_id`) REFERENCES `Scene`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fromSceneId",
+            "columnName": "from_scene_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "toSceneId",
+            "columnName": "to_scene_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_Choice_from_scene_id_name",
+            "unique": true,
+            "columnNames": [
+              "from_scene_id",
+              "name"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_Choice_from_scene_id_name` ON `${TABLE_NAME}` (`from_scene_id`, `name`)"
+          },
+          {
+            "name": "index_Choice_from_scene_id",
+            "unique": false,
+            "columnNames": [
+              "from_scene_id"
+            ],
+            "createSql": "CREATE  INDEX `index_Choice_from_scene_id` ON `${TABLE_NAME}` (`from_scene_id`)"
+          },
+          {
+            "name": "index_Choice_to_scene_id",
+            "unique": false,
+            "columnNames": [
+              "to_scene_id"
+            ],
+            "createSql": "CREATE  INDEX `index_Choice_to_scene_id` ON `${TABLE_NAME}` (`to_scene_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Scene",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "from_scene_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "Scene",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "to_scene_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "ChoiceSynonym",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `choice_id` INTEGER NOT NULL, FOREIGN KEY(`choice_id`) REFERENCES `Choice`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "choiceId",
+            "columnName": "choice_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_ChoiceSynonym_choice_id",
+            "unique": false,
+            "columnNames": [
+              "choice_id"
+            ],
+            "createSql": "CREATE  INDEX `index_ChoiceSynonym_choice_id` ON `${TABLE_NAME}` (`choice_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Choice",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "choice_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'dbe79e75dd8934242aad6dd36f26d824')"
+    ]
+  }
+}

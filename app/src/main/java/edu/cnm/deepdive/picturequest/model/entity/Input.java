@@ -11,22 +11,19 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Date;
 
 @Entity
-//    (
-//    foreignKeys = {
-//        @ForeignKey(entity = Player.class,
-//            parentColumns = "id",
-//            childColumns = "player_id",
-//            onDelete = ForeignKey.CASCADE
-//        ),
-//        @ForeignKey(entity = Scene.class,
-//            parentColumns = "id",
-//            childColumns = "scene_id",
-//            onDelete = ForeignKey.CASCADE),
-//        @ForeignKey(entity = Choice.class,
-//            parentColumns = "id",
-//            childColumns = "choice_id",
-//            onDelete = ForeignKey.CASCADE)
-//    })
+    (
+    foreignKeys = {
+        @ForeignKey(entity = Player.class,
+            parentColumns = "id",
+            childColumns = "player_id",
+            onDelete = ForeignKey.CASCADE
+        ),
+        @ForeignKey(entity = Scene.class,
+            parentColumns = "id",
+            childColumns = "scene_id",
+            onDelete = ForeignKey.CASCADE)
+    }
+    )
 public class Input {
 
   @PrimaryKey(autoGenerate = true)
@@ -34,14 +31,14 @@ public class Input {
   @ColumnInfo(index = true, collate = ColumnInfo.NOCASE)
   @SerializedName("name")
   @Expose
-  private String name;                        //List, Live data<list>, array or something??
+  private String name;
   private long value;
   @TypeConverters(DateConverter.class)
   private Date date;
   @ColumnInfo(name="player_id", index = true)
   private long playerId;
-  @ColumnInfo(name="choice_id", index = true)
-  private long choiceId;
+//  @ColumnInfo(name="choice_id", index = true)
+//  private long choiceId;
   @ColumnInfo(name="scene_id", index = true)
   private long sceneId;
 
@@ -53,13 +50,13 @@ public class Input {
     this.playerId = playerId;
   }
 
-  public long getChoiceId() {
-    return choiceId;
-  }
-
-  public void setChoiceId(long choiceId) {
-    this.choiceId = choiceId;
-  }
+//  public long getChoiceId() {
+//    return choiceId;
+//  }
+//
+//  public void setChoiceId(long choiceId) {
+//    this.choiceId = choiceId;
+//  }
 
   public long getSceneId() {
     return sceneId;

@@ -1,19 +1,17 @@
 package edu.cnm.deepdive.picturequest;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import edu.cnm.deepdive.picturequest.model.database.PictureQuestDatabase;
 import edu.cnm.deepdive.picturequest.model.entity.Player;
-import edu.cnm.deepdive.picturequest.model.entity.Scene;
 import edu.cnm.deepdive.picturequest.service.GoogleSignInService;
 
 public class LoginActivity extends AppCompatActivity {
@@ -80,7 +78,8 @@ public class LoginActivity extends AppCompatActivity {
         player.setAuthenticationId(account.getId());
         player.setPlayer(account.getDisplayName());
         player.setSceneId(1);
-        db.getPlayerDao().insert(player);
+        long id = db.getPlayerDao().insert(player);
+        player.setId(id);
       }
       return player;
     }

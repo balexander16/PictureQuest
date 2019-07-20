@@ -68,6 +68,7 @@ import edu.cnm.deepdive.picturequest.service.ClarifaiTask;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -78,8 +79,8 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 
-public class CameraFragment extends Fragment implements View.OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
-//   private final String apiKey = "d1c94b09440a4d85a06e700f193fc56b";
+public class CameraFragment extends Fragment implements View.OnClickListener,
+    ActivityCompat.OnRequestPermissionsResultCallback {
   /**
    * Conversion from screen rotation to JPEG orientation.
    */
@@ -139,8 +140,8 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
   private static final int MAX_PREVIEW_HEIGHT = 1080;
 
   /**
-   * {@link TextureView.SurfaceTextureListener} handles several lifecycle events on a
-   * {@link TextureView}.
+   * {@link TextureView.SurfaceTextureListener} handles several lifecycle events on a {@link
+   * TextureView}.
    */
   private final TextureView.SurfaceTextureListener mSurfaceTextureListener
       = new TextureView.SurfaceTextureListener() {
@@ -253,7 +254,11 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
 
     @Override
     public void onImageAvailable(ImageReader reader) {
-      mBackgroundHandler.post(new ImageSaver(reader.acquireNextImage(), mFile, getContext()));
+      mBackgroundHandler.post(new ImageSaver(reader.acquireNextImage(), mFile, getContext(), playerId, sceneId));
+      //FIXME placeholder #7 nope!
+
+//      new ClarifaiTask(getContext(), playerId, sceneId)
+//          .execute(mFile);
     }
 
   };
@@ -314,7 +319,9 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
                 aeState == CaptureResult.CONTROL_AE_STATE_CONVERGED) {
               mState = STATE_PICTURE_TAKEN;
               captureStillPicture();
-          //TODO see if I need both of these calls. I do not think this is the place
+//              new ClarifaiTask(getContext(), playerId, sceneId)
+//                  .execute(mFile);
+              //TODO see if I need both of these calls. I do not think this is the place #3
             } else {
               runPrecaptureSequence();
             }
@@ -336,8 +343,9 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
           Integer aeState = result.get(CaptureResult.CONTROL_AE_STATE);
           if (aeState == null || aeState != CaptureResult.CONTROL_AE_STATE_PRECAPTURE) {
             mState = STATE_PICTURE_TAKEN;
-            captureStillPicture();                //FIXME it might be here too?
-
+            captureStillPicture();                //FIXME it might be here too? place #2
+//            new ClarifaiTask(getContext(), playerId, sceneId)
+//                .execute(mFile);
           }
           break;
         }
@@ -378,19 +386,18 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
   }
 
   /**
-   * Given {@code choices} of {@code Size}s supported by a camera, choose the smallest one that
-   * is at least as large as the respective texture view size, and that is at most as large as the
+   * Given {@code choices} of {@code Size}s supported by a camera, choose the smallest one that is
+   * at least as large as the respective texture view size, and that is at most as large as the
    * respective max size, and whose aspect ratio matches with the specified value. If such size
-   * doesn't exist, choose the largest one that is at most as large as the respective max size,
-   * and whose aspect ratio matches with the specified value.
+   * doesn't exist, choose the largest one that is at most as large as the respective max size, and
+   * whose aspect ratio matches with the specified value.
    *
-   * @param choices           The list of sizes that the camera supports for the intended output
-   *                          class
-   * @param textureViewWidth  The width of the texture view relative to sensor coordinate
+   * @param choices The list of sizes that the camera supports for the intended output class
+   * @param textureViewWidth The width of the texture view relative to sensor coordinate
    * @param textureViewHeight The height of the texture view relative to sensor coordinate
-   * @param maxWidth          The maximum width that can be chosen
-   * @param maxHeight         The maximum height that can be chosen
-   * @param aspectRatio       The aspect ratio
+   * @param maxWidth The maximum width that can be chosen
+   * @param maxHeight The maximum height that can be chosen
+   * @param aspectRatio The aspect ratio
    * @return The optimal {@code Size}, or an arbitrary one if none were big enough
    */
   private static Size chooseOptimalSize(Size[] choices, int textureViewWidth,
@@ -435,7 +442,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
       Bundle savedInstanceState) {
     // TODO take in the bundle of information of what the current user and scene is?
     playerId = ((MainActivity) getActivity()).getPlayerId();
-    sceneId =  ((MainActivity) getActivity()).getSceneId();
+    sceneId = ((MainActivity) getActivity()).getSceneId();
 
     return inflater.inflate(R.layout.fragment_camera, container, false);
   }
@@ -500,7 +507,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
   /**
    * Sets up member variables related to camera.
    *
-   * @param width  The width of available size for camera preview
+   * @param width The width of available size for camera preview
    * @param height The height of available size for camera preview
    */
   @SuppressWarnings("SuspiciousNameCombination")
@@ -744,11 +751,11 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
   }
 
   /**
-   * Configures the necessary {@link android.graphics.Matrix} transformation to `mTextureView`.
-   * This method should be called after the camera preview size is determined in
-   * setUpCameraOutputs and also the size of `mTextureView` is fixed.
+   * Configures the necessary {@link android.graphics.Matrix} transformation to `mTextureView`. This
+   * method should be called after the camera preview size is determined in setUpCameraOutputs and
+   * also the size of `mTextureView` is fixed.
    *
-   * @param viewWidth  The width of `mTextureView`
+   * @param viewWidth The width of `mTextureView`
    * @param viewHeight The height of `mTextureView`
    */
   private void configureTransform(int viewWidth, int viewHeight) {
@@ -801,8 +808,8 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
   }
 
   /**
-   * Run the precapture sequence for capturing a still image. This method should be called when
-   * we get a response in {@link #mCaptureCallback} from {@link #lockFocus()}.
+   * Run the precapture sequence for capturing a still image. This method should be called when we
+   * get a response in {@link #mCaptureCallback} from {@link #lockFocus()}.
    */
   private void runPrecaptureSequence() {
     try {
@@ -819,8 +826,8 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
   }
 
   /**
-   * Capture a still picture. This method should be called when we get a response in
-   * {@link #mCaptureCallback} from both {@link #lockFocus()}.
+   * Capture a still picture. This method should be called when we get a response in {@link
+   * #mCaptureCallback} from both {@link #lockFocus()}.
    */
   private void captureStillPicture() {
     try {
@@ -852,25 +859,29 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
           showToast("Saved: " + mFile);
           Log.d(TAG, mFile.toString());
           unlockFocus();
-/*          new ClarifaiTask(getContext(), playerId, sceneId)
-              .execute(mFile);*/
+
+//          new ClarifaiTask(getContext(), playerId, sceneId)
+//              .execute(mFile);
 
           //TODO see if this is the right place for the clarifai task. I think so it works!!!!!!!
-
+          // place #4
 
         }
       };
 
-
       mCaptureSession.stopRepeating();
       mCaptureSession.abortCaptures();
       mCaptureSession.capture(captureBuilder.build(), CaptureCallback, null);
-      //TODO another place to try attempting now, nope!
+      //TODO another place to try attempting now, nope! #6 NOPE!!!!
+//      new ClarifaiTask(getContext(), playerId, sceneId)
+//          .execute(mFile);
 
     } catch (CameraAccessException e) {
       e.printStackTrace();
     }
-//    new ClarifaiTask(getContext())
+//FIXME place #1
+
+//    new ClarifaiTask(getContext(), playerId, sceneId)
 //        .execute(mFile);
   }
 
@@ -889,8 +900,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
   }
 
   /**
-   * Unlock the focus. This method should be called when still image capture sequence is
-   * finished.
+   * Unlock the focus. This method should be called when still image capture sequence is finished.
    */
   private void unlockFocus() {
     try {
@@ -904,6 +914,11 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
       mState = STATE_PREVIEW;
       mCaptureSession.setRepeatingRequest(mPreviewRequest, mCaptureCallback,
           mBackgroundHandler);
+      //FIXME place holder #8
+
+//      new ClarifaiTask(getContext(), playerId, sceneId)
+//          .execute(mFile);
+
     } catch (CameraAccessException e) {
       e.printStackTrace();
     }
@@ -914,9 +929,10 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
     switch (view.getId()) {
       case R.id.picture: {
         takePicture();
-        new ClarifaiTask(getContext(), playerId, sceneId)
-            .execute(mFile);
-//                                               TODO this was the original spot that worked have tried another spot to see if bug is fixed
+//        new ClarifaiTask(getContext(), playerId, sceneId)
+//            .execute(mFile);
+
+//                                               TODO this was the original spot that worked have tried another spot to see if bug is fixed   (place #5)
 //                                               TODO get rid of this placeholder if correct spot is found.
         break;
       }
@@ -945,6 +961,8 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
    */
   private static class ImageSaver implements Runnable {
 
+    private static final int BUFFER_SIZE = 16_384;
+
     /**
      * The JPEG image
      */
@@ -955,37 +973,41 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
     private final File mFile;
 
     private final Context context;
+    private final long playerId;
+    private final long sceneId;
 
-    ImageSaver(Image image, File file, Context context) {
+    ImageSaver(Image image, File file, Context context, long playerId, long sceneId) {
       mImage = image;
       mFile = file;
       this.context = context;
+      this.playerId = playerId;
+      this.sceneId = sceneId;
     }
 
     @Override
     public void run() {
 
-      ByteBuffer buffer = mImage.getPlanes()[0].getBuffer();
-      byte[] bytes = new byte[buffer.remaining()];
-      buffer.get(bytes);
-      FileOutputStream output = null;
-      try {
-        output = new FileOutputStream(mFile);
-        output.write(bytes);
+      try (OutputStream output = new FileOutputStream(mFile)) {
+        ByteBuffer buffer = mImage.getPlanes()[0].getBuffer();
+        byte[] bytes = new byte[BUFFER_SIZE];
+        while (buffer.remaining() > 0) {
+          int transferLength = Math.min(buffer.remaining(), BUFFER_SIZE);
+          buffer.get(bytes, 0, transferLength);
+          output.write(bytes, 0, transferLength);
+        }
       } catch (IOException e) {
-        e.printStackTrace();
+        Log.e(getClass().getName(), e.getMessage(), e);
+        throw new RuntimeException(e);
       } finally {
         mImage.close();
-        if (null != output) {
-          try {
-            output.close();
-          } catch (IOException e) {
-            e.printStackTrace();
-          }
-        }
       }
-
+      new ClarifaiTask(context, playerId, sceneId)
+          .execute(mFile);
+        //FIXME place #10 works for now!!!!! thank the lord.
     }
+
+    //FIXME place #9
+
 
   }
 
@@ -1068,9 +1090,4 @@ public class CameraFragment extends Fragment implements View.OnClickListener, Ac
   }
 
 
-
-
-
-
-
-  }
+}
