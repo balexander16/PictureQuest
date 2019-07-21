@@ -26,12 +26,23 @@ import androidx.room.Update;
 import edu.cnm.deepdive.picturequest.model.entity.Player;
 import java.util.List;
 
+/**
+ * {@link Dao} Interface containing methods to insert, get a {@link Player} by authentication id,
+ * find a {@link Player} by database id, and to update {@link Player}
+ * @author Brian Alexander
+ */
 @Dao
 public interface PlayerDao {
 
+  /**
+   * Method designed to insert a single {@link Player into the database.
+   * @param player the {@link Player} to be inserted
+   * @return said {@link Player}
+   */
   @Insert(onConflict = OnConflictStrategy.IGNORE)
   long insert(Player player);
 
+  
   @Query("SELECT * FROM player WHERE authentication_id = :authenticationId")
   Player get(String authenticationId);
 

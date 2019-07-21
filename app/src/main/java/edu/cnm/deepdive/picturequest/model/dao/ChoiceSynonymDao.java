@@ -24,15 +24,32 @@ import androidx.room.Query;
 import edu.cnm.deepdive.picturequest.model.entity.ChoiceSynonym;
 import java.util.List;
 
+/**
+ * {@link Dao} Interface designed to interact with {@link ChoiceSynonym} Entity class, including methods to insert
+ * and select all.
+ */
 @Dao
 public interface ChoiceSynonymDao {
 
+  /**
+   * Method to insert a {@link ChoiceSynonym} into the database
+   * @param choiceSynonym the synonym associated to a specific {@link edu.cnm.deepdive.picturequest.model.entity.Choice}
+   * @author Brian Alexander
+   */
   @Insert
   void insert(ChoiceSynonym choiceSynonym);
 
+  /**
+   * Method to insert multiple {@link ChoiceSynonym} at a time
+   * @param choicesSynonyms the synonym('s) associated to a specific {@link edu.cnm.deepdive.picturequest.model.entity.Choice}
+   */
   @Insert
   void insert(ChoiceSynonym... choicesSynonyms);
 
+  /**
+   * Method to select all {@link ChoiceSynonym} from the database at once
+   * @return {@link LiveData}{@link List} of {@link ChoiceSynonym}
+   */
   @Query("SELECT * FROM choicesynonym")
   LiveData<List<ChoiceSynonym>> getAll();
 

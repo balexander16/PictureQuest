@@ -24,21 +24,52 @@ import androidx.room.Query;
 import edu.cnm.deepdive.picturequest.model.entity.Choice;
 import java.util.List;
 
+/**
+ * {@link Dao} Interface used to interact with {@link Choice}, contains
+ * methods for Inserting, Finding by Id, as well as getting Relevant Choices to
+ * the specific scene and what inputs are given.
+ *
+ * @author Brian Alexander
+ */
 @Dao
 public interface ChoiceDao {
 
+  /**
+   * Simple method to insert a single choice into the database.
+   * @param choice the {@link Choice} to be inserted.
+   */
   @Insert
   void insert(Choice choice);
 
+  /**
+   * Method to insert zero or more choices to the database at once.
+   * @param choices the {@link Choice} to be inserted
+   */
   @Insert
   void insert(Choice... choices);
 
+  /**
+   * Currently unused method that gets all choices from the Database
+   * @return {@link LiveData} {@link List} of {@link Choice} in the entire table.
+   */
   @Query("SELECT * FROM choice")
   LiveData<List<Choice>> getAll();
 
+  /**
+   * Method to select a choice by its id.
+   * @param id the id number of the choice, as a long.
+   * @return the {@link Choice} by its id.
+   */
   @Query("SELECT * FROM choice WHERE id = :id")
   LiveData<Choice> findById(long id);
 
+  /**
+   * Method that selects all {@link Choice} or {@link edu.cnm.deepdive.picturequest.model.entity.ChoiceSynonym} that match
+   * with an {@link edu.cnm.deepdive.picturequest.model.entity.Input} generated from a picture being taken and passed into {@link edu.cnm.deepdive.picturequest.service.ClarifaiTask}
+   * @param sceneId the sceneId that
+   * @param objects {@link List} of {@link String} objects that are passed in from the {@link edu.cnm.deepdive.picturequest.service.ClarifaiTask}
+   * @return list of {@link Choice} that mathches the {@link edu.cnm.deepdive.picturequest.model.entity.Input} names.
+   */
   @Query(""
       + "SELECT DISTINCT "
       + "c.* "
