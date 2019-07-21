@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import edu.cnm.deepdive.picturequest.model.database.PictureQuestDatabase;
 import edu.cnm.deepdive.picturequest.model.entity.Choice;
+import edu.cnm.deepdive.picturequest.model.entity.Scene;
 import edu.cnm.deepdive.picturequest.service.ClarifaiTask;
 import java.util.List;
 
@@ -29,6 +30,8 @@ public class ChoiceViewModel extends AndroidViewModel {
     return PictureQuestDatabase.getInstance(getApplication()).getChoiceDao()
         .getRelevantChoices(id, objects);
   }
+
+
 
 
 

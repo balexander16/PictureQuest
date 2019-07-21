@@ -40,6 +40,27 @@ public class ChoiceFragment extends Fragment {
 
     Button button = view.findViewById(R.id.button_choice_one);
     Button button2 = view.findViewById(R.id.button_choice_two);
+    Button button3 = view.findViewById(R.id.button_final_choice);
+    button3.setVisibility(View.INVISIBLE);
+
+    if (((MainActivity) getActivity()).getSceneId() == 14
+        || ((MainActivity) getActivity()).getSceneId() == 17) {
+      button3.setVisibility(View.VISIBLE);
+      button3.setText(getString(R.string.dead));
+      button3.setOnClickListener((v) -> {
+        goToFirstScene();
+      });
+    }
+
+    if (((MainActivity) getActivity()).getSceneId() == 15
+    || ((MainActivity) getActivity()).getSceneId() == 18) {
+      button3.setVisibility(View.VISIBLE);
+      button3.setText(getString(R.string.go_home));
+      button3.setOnClickListener((v) -> {
+        goToFirstScene();
+      });
+    }
+
 
     //TODO nest these inside of each other. list of strings first then the next one do do work off of it! aha!
     viewModel.getInputs(((MainActivity) getActivity()).getSceneId()).observe(this, input -> {
@@ -81,7 +102,14 @@ public class ChoiceFragment extends Fragment {
     NavController navController = Navigation
         .findNavController(getActivity(), R.id.nav_host_fragment);
     navController.navigate(R.id.story_home);
+  }
 
+  private void goToFirstScene() {
+    ((MainActivity) getActivity()).setSceneId(1);
+
+    NavController navController = Navigation
+        .findNavController(getActivity(), R.id.nav_host_fragment);
+    navController.navigate(R.id.story_home);
   }
 
   //TODO set buttons display to be the available choices to the scene we are currently on and then onClick go to the next scene...........

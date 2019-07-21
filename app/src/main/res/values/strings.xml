@@ -75,6 +75,8 @@
   <string name="take_picture">Take picture</string>
   <string name="authentication_error">Unable to Authenticate User</string>
   <string name="sign_out">Sign Out</string>
+  <string name="go_home">Go home to sleep for the night.</string>
+  <string name="dead">You have died..... Respawn at home</string>
 
 
 </resources>

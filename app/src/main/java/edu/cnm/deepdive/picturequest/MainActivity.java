@@ -19,7 +19,11 @@ import edu.cnm.deepdive.picturequest.model.entity.Player;
 import edu.cnm.deepdive.picturequest.service.GoogleSignInService;
 import edu.cnm.deepdive.picturequest.viewmodel.MainViewModel;
 
-
+/**
+ *   Main Activity for the class, containing the onCreate class, and calls a MainViewModel. The MainActivity
+ *   is used to hold the current sceneId and playerId values that are needed in the SceneFragment, CameraFragment and
+ *   ChoiceFragment.
+ */
 public class MainActivity extends AppCompatActivity {
 
   private NavController navController;
@@ -31,6 +35,13 @@ public class MainActivity extends AppCompatActivity {
 
   private MainViewModel viewModel;
 
+  /**
+   * Protected onCreate Override to create the NavController and to get and set the playerId and
+   * sceneId parameters. As well as initializing the MainViewModel. Call to MainViewModel
+   * is used to Observe when a new player is created and to set the scene for a new player to te first
+   * scene.
+   * @param savedInstanceState
+   */
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -54,13 +65,22 @@ public class MainActivity extends AppCompatActivity {
     });
   }
 
-
+  /**
+   * Creates and inflates the options menu.
+   * @param menu
+   * @return
+   */
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.options, menu);
     return true;
   }
 
+  /**
+   * Currently contains the only option in the options menu, to sign out.
+   * @param item
+   * @return
+   */
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     boolean handled = true;
@@ -73,7 +93,11 @@ public class MainActivity extends AppCompatActivity {
     }
     return handled;
   }
+  //TODO create a reset option in the options menu!
 
+  /**
+   * Initialized a GoogleSignInService and sets the account to null, i.e. signing out.
+   */
   private void signOut() {
     GoogleSignInService service = GoogleSignInService.getInstance();
     service.getClient().signOut().addOnCompleteListener((task) -> {
@@ -84,14 +108,28 @@ public class MainActivity extends AppCompatActivity {
     });
   }
 
+  /**
+   * Getter to get the playerId
+   * @return playerId
+   */
   public long getPlayerId() {
     return playerId;
   }
 
+  /**
+   * Getter to get the sceneId
+   * @return sceneId
+   */
   public long getSceneId() {
     return sceneId;
   }
 
+  /**
+   * Setter to set the current scene for the player, as long as there is a player,
+   * as clearing any inputs that have already been used for that scene by the current player if they
+   * have been to that scene before.
+   * @param sceneId
+   */
   public void setSceneId(long sceneId) {
     this.sceneId = sceneId;
     if (player != null) {
