@@ -7,15 +7,6 @@ CREATE TABLE IF NOT EXISTS `Player`
     FOREIGN KEY (`scene_id`) REFERENCES `Scene` (`id`) ON UPDATE NO ACTION ON DELETE RESTRICT
 );
 
-CREATE TABLE IF NOT EXISTS `Player`
-(
-    `id`                INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-    `authentication_id` TEXT,
-    `player`            TEXT,
-    `scene_id`          INTEGER                           NOT NULL,
-    FOREIGN KEY (`scene_id`) REFERENCES `Scene` (`id`) ON UPDATE NO ACTION ON DELETE RESTRICT
-);
-
 CREATE UNIQUE INDEX `index_Player_authentication_id` ON `Player` (`authentication_id`);
 
 CREATE INDEX `index_Player_scene_id` ON `Player` (`scene_id`);
@@ -23,7 +14,7 @@ CREATE INDEX `index_Player_scene_id` ON `Player` (`scene_id`);
 CREATE TABLE IF NOT EXISTS `Scene`
 (
     `id`    INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-    `scene` TEXT
+    `scene` TEXT                              NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS `Input`
@@ -33,15 +24,16 @@ CREATE TABLE IF NOT EXISTS `Input`
     `value`     INTEGER                           NOT NULL,
     `date`      INTEGER,
     `player_id` INTEGER                           NOT NULL,
-    `choice_id` INTEGER                           NOT NULL,
-    `scene_id`  INTEGER                           NOT NULL
+    `scene_id`  INTEGER                           NOT NULL,
+    FOREIGN KEY (`player_id`) REFERENCES `Player` (`id`) ON UPDATE NO ACTION ON DELETE CASCADE,
+    FOREIGN KEY (`scene_id`) REFERENCES `Scene` (`id`) ON UPDATE NO ACTION ON DELETE CASCADE
 );
 
 CREATE INDEX `index_Input_name` ON `Input` (`name`);
 
 CREATE INDEX `index_Input_player_id` ON `Input` (`player_id`);
 
-CREATE INDEX `index_Input_choice_id` ON `Input` (`choice_id`);
+CREATE INDEX `index_Input_scene_id` ON `Input` (`scene_id`);
 
 CREATE TABLE IF NOT EXISTS `Choice`
 (
@@ -68,4 +60,6 @@ CREATE TABLE IF NOT EXISTS `ChoiceSynonym`
 );
 
 CREATE INDEX `index_ChoiceSynonym_choice_id` ON `ChoiceSynonym` (`choice_id`);
+
+
 
