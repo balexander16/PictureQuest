@@ -1,15 +1,31 @@
+/*
+    Copyright 2019 Brian Alexander
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+*/
+
 package edu.cnm.deepdive.picturequest.service;
 
 import android.app.Application;
-import android.content.Context;
-import android.os.AsyncTask;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import edu.cnm.deepdive.picturequest.model.database.PictureQuestDatabase;
-import edu.cnm.deepdive.picturequest.model.entity.Player;
 
+/**
+ * The class is used to invoke a call to the Google Sign in OAuth client
+ */
 public class GoogleSignInService {
 
   private GoogleSignInAccount account;

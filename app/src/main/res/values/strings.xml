@@ -16,62 +16,6 @@
   <string name="error">Error while contacting API</string>
   <string name="no_results">No Results from API</string>
 
-  <!--  Input Request strings-->
-  <string name="city_input_request">Please take a picture in a city setting.</string>
-  <string name="nature_input_request">Please take a picture of a nature setting</string>
-  <string name="indoors_input_request">Please take a picture indoors.</string>
-
-  <string name="no_inputs_found">No possible inputs detected, please take another picture.</string>
-
-  <!--  TODO finish Opening Storyline Strings-->
-  <string name="opening_scene">Opening Scene</string>
-
-  <!--   First Picture to 4 input options. Sign, Car, Building, plant-->
-  <string name="sign_input_1">A sign in front of you says
-    "Ashenmoore Village two miles" and points to the west. </string>
-  <string name="car_input_1">You see an elderly man in tattered clothing driving a wagon,
-    he says "Would you like to accompany me north, I hear there\'s bandits on the road."</string>
-  <string name="building_input_1">To the east stands a tower belonging to the mage Duran,
-    a dark blue light is shining through a window</string>
-  <string name="plant_input_1">A tattered raven is perched in a tree nearby,
-    he seems to be watching you intently.</string>
-
-  <!--   What do you do, to be reused often!!!!! -->
-  <string name="what_do_you_do">What do you do?</string>
-
-  <!--  Decisions-->
-  <string name="go_to_town">Follow the sign and walk to town.</string>
-  <string name="get_on_wagon">Join the elderly man, and get onto the wagon. </string>
-  <string name="go_to_tower">Investigate Duran\'s Tower.</string>
-  <string name="go_to_raven">Walk towards the raven.</string>
-
-  <!--  The branching paths begin!-->
-
-  <string name="arrive_in_town">After cresting a steep hill, the town of Ashenmoore village sprawls
-    before you, a man runs up to you panting heavily, "Please help me! My son has been poisoned,
-    do you have any herbs that would help?</string>
-  <!--  ^^    Nature input request ^^-->
-
-  <string name="wagon_trip">The wagon creaks and sways as you travel along a well worn road
-    through the forest, you hear a rustling in a bush ahead and a man wearing
-    a hood jumps out from behind a bush. "Give me all of your gold and no one will be hurt.</string>
-  <!-- ^^ TODO figure out what request! Not sure what request  ^^ -->
-
-  <string name="investigate_tower">As you approach the tower you notice the birds have stopped
-    chirping near by and an erie hum has been getting louder. Suddenly a scream pierces through the
-    air at the same time as you entering the tower.
-    </string>
-  <!-- ^^  request indoor input  ^^ -->
-
-  <string name="investigate_raven">The raven watches you every step of the way, as you get within a
-    few feet a creaking voice calls out. "That is close enough for my comfort, we have been watching
-    you, and believe you might be able to help us." The voice is coming from the raven!
-    "Please follow me." as it flies into the forest. </string>
-  <string name="to_camera">To Camera</string>
-  <!--   ^^ Natue input request ^^-->
-
-  <!--TODO write out prompts first and make story arch-->
-
   <string name="take_picture">Take picture</string>
   <string name="authentication_error">Unable to Authenticate User</string>
   <string name="sign_out">Sign Out</string>
