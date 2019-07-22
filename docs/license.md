@@ -13,8 +13,8 @@
    See the License for the specific language governing permissions and
    limitations under the License.
    
-   ## Third Party License
- ###  Camera2 API Sample  
+## Third Party License
+###  Camera2 API Sample  
   Copyright 2017 The Android Open Source Project
  
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,7 +29,7 @@
   See the License for the specific language governing permissions and
   limitations under the License.
  
- ### Clarifai Java Client
+### Clarifai Java Client
  Copyright 2016 Clarifai, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
