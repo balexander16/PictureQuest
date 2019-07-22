@@ -19,6 +19,6 @@ Please follow these steps to setup this application.
     * for instance if this in .../projects/PictureQuest please create a directory in .../projects.
 7. Inside of your keys directory please create a clarifai.properties file. 
 8. The only thing inside of this file should be api_key = [YOUR API KEY]
-    * **Replacing [YOUR API KEY] with your API key from Clarifai. 
+    * **Replacing [YOUR API KEY] with your API key from Clarifai.**
 9. Now everything should be running smoothly, you may need to build rebuild or to do an import changes or a sync gradle after creating that file so your dependencies have the proper file to use. 
 10. Enjoy the Quest!
