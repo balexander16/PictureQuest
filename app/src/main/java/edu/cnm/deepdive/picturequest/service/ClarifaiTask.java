@@ -33,23 +33,51 @@ import edu.cnm.deepdive.picturequest.model.entity.Input;
 import java.io.File;
 import java.util.List;
 
-/**This class implements and utilizes the Clarifai client by creating a new client using the apiKey then
-making a call to the GeneralModel to receive an output list of tagged images upon a file captured
-from the camerafragment class. It does this in the background then uses the output names to correspond
-with a possible choice for the scene we are currently at.*/
-
+/**
+ * Class to make a call to the Clarifai API to create predictions off of an image, predicting what objects are contained within.
+ * This is done as an {@link AsyncTask} to avoid running on the UI thread while we wait for a request. This {@link AsyncTask} takes in a {@link File}
+ * to be converted into a {@link List} of {@link ClarifaiOutput} {@link Concept}. This is done by creating and initializing a
+ * {@link ClarifaiClient} using an API_Key then making a {@link ClarifaiResponse} request with the Image which is the {@link File} passed in.
+ * I have only used the General Model provided by Clarifai. I then take the {@link ClarifaiResponse} and only after a successful request. Get the specific date needed.
+ * @author Brian Alexander
+ */
 public class ClarifaiTask extends AsyncTask<File, Void, List<ClarifaiOutput<Concept>>> {
 
+  /**
+   * Context for the application
+   */
   private Context context;
+  /**
+   * the Id of the {@link edu.cnm.deepdive.picturequest.model.entity.Player}
+   */
   private long playerId;
+  /**
+   * the id of the {@link edu.cnm.deepdive.picturequest.model.entity.Scene}
+   */
   private long sceneId;
 
+  /**
+   * Constructor for the class.
+   * @param context current context of app passed in.
+   * @param playerId the current player
+   * @param sceneId the current scene.
+   */
   public ClarifaiTask(Context context, long playerId, long sceneId) {
     this.context = context;
     this.sceneId = sceneId;
     this.playerId = playerId;
   }
 
+  /**
+   * Override of the doInBackground. This is to make the API request off of the UI thread.
+   * Make a new {@link ClarifaiClient} with the API_Key. Then make a {@link ClarifaiResponse} request. On the file.
+   * We then only on a successful response, take the {@link List} of {@link ClarifaiOutput} {@link Concept} and run it through
+   * nested for loops, that say for each result in our predications, then give me the data of each result. WE then get just the name of the
+   * {@link ClarifaiResponse} and create a new {@link Input} setting the name to the name from the {@link ClarifaiResponse}
+   * we also set the {@link #sceneId} and the {@link #playerId} to what was taken in. Then we insert all of that using {@link edu.cnm.deepdive.picturequest.model.dao.InputDao}
+   * @param files
+   * @return
+   */
   @Override
   protected List<ClarifaiOutput<Concept>> doInBackground(File... files) {
     ClarifaiClient client = new ClarifaiBuilder(BuildConfig.API_KEY).buildSync();
@@ -83,6 +111,10 @@ public class ClarifaiTask extends AsyncTask<File, Void, List<ClarifaiOutput<Conc
     // Nothing really
   }
 
+  /**
+   * Creates a toast if the request to Clarifai was unsuccesful
+   * @param clarifaiOutputs the attempted request to the API
+   */
   @Override
   protected void onCancelled(List<ClarifaiOutput<Concept>> clarifaiOutputs) {
     Toast.makeText(context, context.getString(R.string.error), Toast.LENGTH_LONG).show();

@@ -23,6 +23,9 @@ import androidx.lifecycle.Observer;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Test class to test live data and do automated testign for one of the {@link androidx.room.Dao} classes.
+ */
 public class LiveDataTestUtil {
 
   public static <T> T getValue(LiveData<T> liveData) throws InterruptedException {
