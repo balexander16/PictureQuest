@@ -55,8 +55,22 @@ Hopefully that app will be appealing to fans off RPG's that are looking to get u
 
 ## List of 3rd Party Libraries. 
 * Facebook Stetho for database testing.
+* Google OAuth
+
+*Please see the 3rd Party License and Copyright link above
+
+## List of External Services
 * Clarifai Java Client API for the Clarifai Services. 
 * Gson 
+
+*Please see the 3rd Party License and Copyright link above
+
+## Stretch Goals
+* Add in a reset function in options. 
+* Add in more aesthetics, images, scroll all kinds of things. 
+* Add more OAuth providers incase someone doesn's use Google. 
+* Add some more text in the Choices for the buttons to add more naration. 
+* Create a much longer story, currently stands at 18 total possible scenes. 
 
 ## License
  Copyright 2019 Brian Alexander 
