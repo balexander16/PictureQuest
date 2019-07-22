@@ -32,6 +32,32 @@ Hopefully that app will be appealing to fans off RPG's that are looking to get u
 * The primary API to be utilized will be Clarifai Object Recognition API, utliizing the community/free developer tier which does have a throttle of 5,000 inputs a month. 
 * I would also like to utilize google sign in to keep track of users and use each user to save story states. 
 
+## Aims and Motivation 
+* I chose to develop this app because I was interested in utilizing and understanding some image recognition services. I was also interested in making an interactive application that can get people up and moving around the areas they live in as well as taking pictures of their cities.
+* I believe this is a potentially useful or interesting app because it is a fun novel way to explore your surrounds.
+
+## Current State of Completion
+* The game runs and functions as intended, but could use some functionality tweaks and changes. 
+* Currently there is no reset button or anything to toggle the game back to reset, unless you get to a point in the game that the character either dies, or returns back to home. The user must continue through the game. 
+* The app flow could be better. Ideally I realized late that bottom navigation might be the wrong type of navigation. 
+   * Ideally it should be at a scene then just a floating action button could take you to the camera. 
+   * After taking a picture, if a choice is found it could then take you to the choice fragment. 
+   * Then you need to select your choice which takes you to the next scene, which is already implemented. 
+* I would like to change a fix the way that the scene is displayed. It's currently in a List View which is how I initially created it but honestly there is probably a better method to display. 
+* Would like to add some aesthetics to the game. Maybe a scroll behind the text or other things. 
+
+## Android API Versions
+* App was tested on API version 26 min with a target api of 28 on a Nexus 5X API 28
+* It was also tested on a Google Pixel 2 with an API version 28 
+  * This is my personal phone and was tested extensively on this since actual real pictures instead of an emulator is more ideal.
+* App functions in any orientation in all fragments. As far as I know... CameraFragment has a seperate layout for landscape.
+* Highly recommend 
+
+## List of 3rd Party Libraries. 
+* Facebook Stetho for database testing.
+* Clarifai Java Client API for the Clarifai Services. 
+* Gson 
+
 ## License
  Copyright 2019 Brian Alexander 
 
