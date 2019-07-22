@@ -42,21 +42,57 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
+/**
+ * Class to create a {@link RoomDatabase} containing methods to get the {@link androidx.room.Dao} classes
+ * {@link SceneDao}, {@link InputDao}, {@link ChoiceDao}, {@link ChoiceSynonymDao}, and {@link PlayerDao}.
+ * Also contains methods to create the {@link RoomDatabase} itself if it has not yet been created. This class
+ * contains a nested class: {@link PopulateDbTask} an {@link AsyncTask} to populate the database with the
+ * {@link Scene}s, {@link Choice}s, and {@link ChoiceSynonym} for the game.
+ * @author Brian Alexander
+ */
 @Database(entities = {Player.class, Scene.class, Input.class, Choice.class, ChoiceSynonym.class}, version = 1)
 public abstract class PictureQuestDatabase  extends RoomDatabase {
 
+  /**
+   * Method to get the {@link InputDao}
+   * @return {@link InputDao}
+   */
   public abstract InputDao getInputDao();
 
+  /**
+   * Method to get the {@link SceneDao}
+   * @return {@link SceneDao}
+   */
   public abstract SceneDao getSceneDao();
 
+  /**
+   * Method to get the {@link ChoiceDao}
+   * @return {@link ChoiceDao}
+   */
   public abstract ChoiceDao getChoiceDao();
 
+  /**
+   * Method to get the {@link ChoiceSynonymDao}
+   * @return {@link ChoiceSynonymDao}
+   */
   public abstract ChoiceSynonymDao getChoiceSynonymDao();
 
+  /**
+   * Method to get the {@link PlayerDao}
+   * @return
+   */
   public abstract PlayerDao getPlayerDao();
 
+  /**
+   * Initializing the Database and its instance.
+   */
   private static PictureQuestDatabase INSTANCE;
 
+  /**
+   * Method to get the instance of the app itself and if null, create a the database itself.
+   * @param context Current {@link Context} of the app passed into the {{@link #getInstance(Context)}}
+   * @return The {@link RoomDatabase} created for the game.
+   */
   public static PictureQuestDatabase getInstance(Context context){
     if(INSTANCE == null){
       synchronized (PictureQuestDatabase.class) {
@@ -77,19 +113,44 @@ public abstract class PictureQuestDatabase  extends RoomDatabase {
     return INSTANCE;
   }
 
+  /**
+   * Class created to prepopulate the {@link RoomDatabase} done using an {@link AsyncTask} to keep database
+   * population out of the UI thread.
+   */
   private static class PopulateDbTask extends AsyncTask<Void, Void, Void> {
 
+    /**
+     * Initialization of the {@link RoomDatabase}
+     */
     private final PictureQuestDatabase db;
 
+    /**
+     * Context of the app.
+     */
     private final Context context;
 
+    /**
+     * Constructor for this class.
+     * @param db the current {@link RoomDatabase}
+     * @param context the current app {@link Context}
+     */
     PopulateDbTask(PictureQuestDatabase db, Context context){
       this.db = db;
       this.context = context;
     }
 
 
-    //TODO write a bunch more code to pre-populate the database with all Scenes, possible choices, and choice synonyms.
+    /**
+     * {@link AsyncTask} do in background, to initialize a background thread that populated the
+     * {@link ChoiceSynonym}, {@link Choice} and {@link Scene} Entity of the {@link RoomDatabase}
+     * by creating a {@link GsonBuilder}, reading a local {@link com.google.gson.JsonArray} Json file with {@link InputStream}
+     * then reading the Stream with a {@link Reader}. From there we take an {@link java.util.Arrays} of
+     * the class type we read in from the file. We then use our local initialization of our {@link RoomDatabase}
+     * call the {@link androidx.room.Dao} class associated to the entity, {@link SceneDao}, {@link ChoiceDao}, or
+     * {@link ChoiceSynonymDao} and their respective multiple insert methods.
+     * @param voids nothing...
+     * @return nothing...
+     */
     @Override
     protected Void doInBackground(Void... voids) {
       /*
@@ -113,15 +174,9 @@ public abstract class PictureQuestDatabase  extends RoomDatabase {
       ChoiceSynonym[] synonyms = gson.fromJson(readerSynonyms, ChoiceSynonym[].class);
       db.getChoiceSynonymDao().insert(synonyms);
 
-
       return null;
     }
 
-
   }
-
-// TODO create a method that will extract from the res/raw json files.
-
-
 
 }

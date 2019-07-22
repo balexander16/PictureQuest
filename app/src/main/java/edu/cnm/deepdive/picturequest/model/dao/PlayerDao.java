@@ -37,21 +37,40 @@ public interface PlayerDao {
   /**
    * Method designed to insert a single {@link Player into the database.
    * @param player the {@link Player} to be inserted
-   * @return said {@link Player}
+   * @return the id of the {@link Player}
    */
   @Insert(onConflict = OnConflictStrategy.IGNORE)
   long insert(Player player);
 
-  
+  /**
+   * Method to get a {@link Player} from the database, based off of a unique authenticaiton id created during {@link edu.cnm.deepdive.picturequest.service.GoogleSignInService}
+   * @param authenticationId authentication id created during {@link edu.cnm.deepdive.picturequest.service.GoogleSignInService} assigned by
+   * Google, a unique id.
+   * @return the {@link Player} associated to the unique id
+   */
   @Query("SELECT * FROM player WHERE authentication_id = :authenticationId")
   Player get(String authenticationId);
 
+  /**
+   * Currently unused method to get all {@link Player}
+   * @return a {@link LiveData} {@link List} of {@link Player}s
+   */
   @Query("SELECT * FROM player")
   LiveData<List<Player>> getAll();
 
+  /**
+   * Method to select a {@link Player} based off of the id generated for them in the database.
+   * @param id the id of a {@link Player} to get
+   * @return the {@link Player} associated to the id
+   */
   @Query("SELECT * FROM player WHERE id = :id")
   LiveData<Player> findById(long id);
 
+  /**
+   * Method to update the data for a {@link Player} entity already in the database.
+   * @param players zero or more {@link Player}
+   * @return one of more {@link Player} to be updated
+   */
   @Update
   int update(Player... players);
 }
