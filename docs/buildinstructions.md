@@ -6,6 +6,9 @@
 
 Please follow these steps to setup this application. 
 1. Fork a copy of this app into your own repository to then clone or download from their. Or simply clone this app locally. 
+    * Copy the SSH Key url from the clone button.
+    * In IntelliJ select Check out from Version Control
+         * Git, then paste the URL you copied to your clipboard.
 2. Import changes to the gradle and sync if necessary. 
 3. Check if your clone, imported successfully, if it did not, such as an initial clone into Intellij. Pleaes close the program and import in IntelliJ.
 4. Check to make sure the app configurations, (top of IntelliJ) has android app config
