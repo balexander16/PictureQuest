@@ -24,24 +24,51 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import edu.cnm.deepdive.picturequest.model.database.PictureQuestDatabase;
+import edu.cnm.deepdive.picturequest.model.entity.Player;
 import edu.cnm.deepdive.picturequest.model.entity.Scene;
 
+/**
+ * {@link androidx.lifecycle.ViewModel} class for the {@link edu.cnm.deepdive.picturequest.SceneFragment} to
+ * access {@link LiveData} off of the UI thread from {@link androidx.room.RoomDatabase}
+ *
+ */
 public class SceneViewModel extends AndroidViewModel {
 
+  /**
+   * {@link LiveData} {@link Scene} variable to keep track of the current {@link Scene} to be passed to the {@link edu.cnm.deepdive.picturequest.SceneFragment}
+   */
   private LiveData<Scene> scene;
+  /**
+   * {@link MutableLiveData} {@link Long} a filter for our live data to be used in a {@link Transformations}{@link java.util.Map}
+   * to keep track of when the {@link Player} is updated so anytime it changes our {@link androidx.lifecycle.Observer} knows.
+   */
   private MutableLiveData<Long> filterLiveData = new MutableLiveData<>();
 
-
+  /**
+   * Constructor for the ViewModel association to the {@link edu.cnm.deepdive.picturequest.SceneFragment}
+   * This constructor is using a {@link Transformations}  for the {@link LiveData} {@link #scene} field above
+   * to check for anytime the player is updated into the database. This takes in the {@link #filterLiveData}
+   * as the key checking if there are any changes.
+   * @param application the application
+   */
   public SceneViewModel(@NonNull Application application) {
     super(application);
     scene = Transformations.switchMap(filterLiveData, (v) ->
         PictureQuestDatabase.getInstance(getApplication()).getSceneDao().findById(v));
   }
 
+  /**
+   * Method to set the {@link #scene} by an id
+   * @param id the id to set the {@link #scene} to
+   */
   public void setSceneId(Long id) {
     filterLiveData.setValue(id);
   }
 
+  /**
+   * Method to get the {@link #scene}
+   * @return the {@link #scene} you got
+   */
   public LiveData<Scene> getScene() {
     return scene;
   }

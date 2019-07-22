@@ -28,10 +28,27 @@ import androidx.lifecycle.ViewModelProviders;
 import edu.cnm.deepdive.picturequest.model.entity.Scene;
 import edu.cnm.deepdive.picturequest.viewmodel.SceneViewModel;
 
+
+/**
+ * {@link Fragment} class that holds a {@link ListView} of the current {@link Scene} displayed to the
+ * user to play through the game. This is done by creating the {@link View} as well as the {@link SceneViewModel}
+ * We then get the {@link #sceneId} from the {@link MainActivity} and use the {@link androidx.lifecycle.ViewModel} to
+ * set the {@link Scene} which we then set into the {@link ListView}.
+ */
 public class SceneFragment extends Fragment {
 
+  /**
+   * The id of the {@link Scene} to be used.
+   */
   private long sceneId;
 
+  /**
+   * Class that inflates the view and sets the {@link ListView} as described in the class description. 
+   * @param inflater for the view
+   * @param container container for the viewgroup
+   * @param savedInstanceState Bundle sent to the fragment
+   * @return the View
+   */
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
 
@@ -41,7 +58,6 @@ public class SceneFragment extends Fragment {
 
     sceneId =((MainActivity)getActivity()).getSceneId();
     viewModel.setSceneId(sceneId);
-  // TODO
 
     viewModel.getScene().observe(this, scene -> {
       final ArrayAdapter<Scene> adapter =
@@ -54,8 +70,5 @@ public class SceneFragment extends Fragment {
   return view;
 
   }
-
-  //TODO display current scene we are on......
-
 
 }

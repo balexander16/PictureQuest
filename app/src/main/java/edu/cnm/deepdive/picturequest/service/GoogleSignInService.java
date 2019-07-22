@@ -89,7 +89,7 @@ public class GoogleSignInService {
 
   /**
    * Getter to get the instance, for the {@link GoogleSignInService}
-   * @return
+   * @return {@link GoogleSignInService}
    */
   public static GoogleSignInService getInstance() {
     return InstanceHolder.INSTANCE;

@@ -176,7 +176,7 @@ public class Input {
 
   /**
    * Currently Unused method to set the value for an {@link Input}
-   * @param value
+   * @param value the {@link #value}
    */
   public void setValue(long value) {
     this.value = value;

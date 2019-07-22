@@ -41,24 +41,51 @@ public class MainViewModel extends AndroidViewModel {
    */
   private MutableLiveData<Long> filterLiveData = new MutableLiveData<>();
 
+  /**
+   * Constructor for the ViewModel association to the {@link edu.cnm.deepdive.picturequest.MainActivity}
+   * This constructor is using a {@link Transformations}  for the {@link LiveData} {@link #player} field above
+   * to check for anytime the player is updated into the database. This takes in the {@link #filterLiveData}
+   * as the key checking if there are any changes.
+   * @param application the application
+   */
   public MainViewModel(@NonNull Application application) {
     super(application);
     player = Transformations.switchMap(filterLiveData, (v) ->
         PictureQuestDatabase.getInstance(getApplication()).getPlayerDao().findById(v));
   }
 
+  /**
+   * Setter to set the Id of the player.
+   * @param id the id to set the {@link Player} to.
+   */
   public void setPlayerId(long id) {
     filterLiveData.setValue(id);
   }
 
+  /**
+   * Getter to get the {@link Player} from the data base
+   * @return {@link LiveData} {@link Player}
+   */
   public LiveData<Player> getPlayer() {
     return player;
   }
 
+  /**
+   * Method to update the {@link Player} in the database upon scene change
+   * @param player {@link Player} to be updated to
+   */
   public void updatePlayer(Player player) {
     new Thread(() -> PictureQuestDatabase.getInstance(getApplication()).getPlayerDao().update(player)).start();
   }
 
+  /**
+   * Method to clear all {@link edu.cnm.deepdive.picturequest.model.entity.Input} for a specific
+   * {@link edu.cnm.deepdive.picturequest.model.entity.Scene} for a {@link Player} so that upon returning to
+   * a scene the {@link edu.cnm.deepdive.picturequest.model.entity.Input} will be cleared so the {@link edu.cnm.deepdive.picturequest.model.entity.Choice}
+   * will not be there already.
+   * @param sceneId the id of the {@link edu.cnm.deepdive.picturequest.model.entity.Scene} to have its {@link edu.cnm.deepdive.picturequest.model.entity.Input} cleared.
+   * @param playerId the id of the {@link Player} to have its {@link edu.cnm.deepdive.picturequest.model.entity.Input} cleared.
+   */
   public void clearInputs(long sceneId, long playerId) {
     new Thread( () -> {
       PictureQuestDatabase.getInstance(getApplication()).getInputDao().deleteInputs(sceneId, playerId);

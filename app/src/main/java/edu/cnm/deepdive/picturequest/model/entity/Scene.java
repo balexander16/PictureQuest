@@ -53,7 +53,7 @@ public class Scene {
 
   /**
    * Method to set a {@link Scene} id
-   * @param id
+   * @param id the {@link #id}
    */
   public void setId(long id) {
     this.id = id;

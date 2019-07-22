@@ -65,7 +65,7 @@ public class Player {
 
   /**
    * Method to get the id of the {@link Scene} associated to the {@link Player}
-   * @return
+   * @return long {@link #sceneId}
    */
   public long getSceneId() {
     return sceneId;

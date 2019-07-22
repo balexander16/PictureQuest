@@ -61,7 +61,7 @@ public interface InputDao {
    * {@link edu.cnm.deepdive.picturequest.model.entity.Scene} at any point, restarting or finishing a questline,
    * they will have the {@link Input} removed for them.
    * @param sceneId the id of a specific {@link edu.cnm.deepdive.picturequest.model.entity.Scene}
-   * @param playerId  the id of the {@link edu.cnm.deepdive.picturequest.model.entity.Player)
+   * @param playerId  the id of the {@link edu.cnm.deepdive.picturequest.model.entity.Player}
    */
   @Query("DELETE FROM Input WHERE scene_id = :sceneId AND player_id = :playerId")
   void deleteInputs(long sceneId, long playerId);

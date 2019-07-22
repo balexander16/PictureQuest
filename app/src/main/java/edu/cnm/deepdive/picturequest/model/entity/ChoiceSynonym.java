@@ -75,7 +75,7 @@ public class ChoiceSynonym {
 
   /**
    * get the id of the {@link Choice} associated to synonym
-   * @return
+   * @return long of the {{@link #choiceId}}
    */
   public long getChoiceId() {
     return choiceId;
@@ -83,7 +83,7 @@ public class ChoiceSynonym {
 
   /**
    * set the {@link Choice} for a {@link ChoiceSynonym}
-   * @param choiceId
+   * @param choiceId the {@link #choiceId}
    */
   public void setChoiceId(long choiceId) {
     this.choiceId = choiceId;

@@ -22,7 +22,11 @@ import com.facebook.stetho.Stetho;
 import edu.cnm.deepdive.picturequest.model.database.PictureQuestDatabase;
 import edu.cnm.deepdive.picturequest.service.GoogleSignInService;
 
-
+/**
+ * {@link Application} class to create, Initialize {@link Stetho} and do a empty delete of
+ * on the {@link androidx.room.RoomDatabase} to initialize the database upon app creation, and finally
+ * initialize the {@link GoogleSignInService}
+ */
 public class PictureQuestApplication extends Application {
 
   @Override

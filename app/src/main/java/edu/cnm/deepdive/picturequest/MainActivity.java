@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
    * sceneId parameters. As well as initializing the MainViewModel. Call to MainViewModel
    * is used to Observe when a new player is created and to set the scene for a new player to te first
    * scene.
-   * @param savedInstanceState
+   * @param savedInstanceState the {@link Bundle}
    */
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
 
   /**
    * Creates and inflates the options menu.
-   * @param menu
-   * @return
+   * @param menu the menu
+   * @return true
    */
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
@@ -91,8 +91,8 @@ public class MainActivity extends AppCompatActivity {
 
   /**
    * Currently contains the only option in the options menu, to sign out.
-   * @param item
-   * @return
+   * @param item item selected from the {@link Menu}
+   * @return {@link Boolean} if the {@link android.content.ClipData.Item} was selected
    */
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
    * Setter to set the current scene for the player, as long as there is a player,
    * as clearing any inputs that have already been used for that scene by the current player if they
    * have been to that scene before.
-   * @param sceneId
+   * @param sceneId {@link #sceneId}
    */
   public void setSceneId(long sceneId) {
     this.sceneId = sceneId;
@@ -151,11 +151,22 @@ public class MainActivity extends AppCompatActivity {
     }
   }
 
+  /**
+   * Setter to set the {@link edu.cnm.deepdive.picturequest.model.entity.Scene} for a {@link Player}.
+   * @param sceneId the {@link edu.cnm.deepdive.picturequest.model.entity.Scene} to set to  by Id.
+   * @param player the {@link Player} to set the {@link edu.cnm.deepdive.picturequest.model.entity.Scene} for.
+   */
   private void setPlayerScene(long sceneId, Player player) {
     player.setSceneId(sceneId);
     viewModel.updatePlayer(player);
   }
 
+  /**
+   * Method to delete the {@link edu.cnm.deepdive.picturequest.model.entity.Input} associated to a {@link edu.cnm.deepdive.picturequest.model.entity.Scene}
+   * for a specific {@link Player}
+   * @param sceneId the {@link edu.cnm.deepdive.picturequest.model.entity.Scene} by Id.
+   * @param player the {@link Player} by id.
+   */
   private void clearSceneInputs(long sceneId, Player player) {
     viewModel.clearInputs(sceneId, player.getId());
   }

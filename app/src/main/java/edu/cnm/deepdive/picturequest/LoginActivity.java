@@ -31,6 +31,12 @@ import edu.cnm.deepdive.picturequest.model.database.PictureQuestDatabase;
 import edu.cnm.deepdive.picturequest.model.entity.Player;
 import edu.cnm.deepdive.picturequest.service.GoogleSignInService;
 
+/**
+ * Initial {@link android.app.Activity} to have a person login using {@link GoogleSignInService}
+ * If someone is already signed in it will load the {@link MainActivity} with a {@link Player} already
+ * associated to the sign in and set the {@link edu.cnm.deepdive.picturequest.model.entity.Scene} to
+ * the last place they left the activity at.
+ */
 public class LoginActivity extends AppCompatActivity {
 
   private static final int LOGIN_REQUEST_CODE = 1000;
@@ -48,9 +54,7 @@ public class LoginActivity extends AppCompatActivity {
     GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
     if (account != null) {
       GoogleSignInService.getInstance().setAccount(account);
-      // TODO Invoke an AsyncTask that queries by authenticationId, and switches to main with the player id.
       new LoadPlayerTask().execute();
-//      switchToMain();
     }
   }
 
@@ -74,6 +78,12 @@ public class LoginActivity extends AppCompatActivity {
     startActivityForResult(intent, LOGIN_REQUEST_CODE);
   }
 
+  /**
+   * Switch to the main activity with a {@link Player} and {@link edu.cnm.deepdive.picturequest.model.entity.Scene}
+   * associated to them.
+   * @param playerId
+   * @param sceneId
+   */
   private void switchToMain(long playerId, long sceneId) {
     Intent intent = new Intent(this, MainActivity.class);
     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -82,7 +92,10 @@ public class LoginActivity extends AppCompatActivity {
     startActivity(intent);
   }
 
-
+  /**
+   * Class to populate the {@link androidx.room.RoomDatabase} with a {@link Player} based upon inputs from the
+   * {@link GoogleSignInService} as well as setting their {@link edu.cnm.deepdive.picturequest.model.entity.Scene}
+   */
   private class PopulatePlayerTask extends AsyncTask<Void, Void, Player> {
 
   @Override
@@ -108,6 +121,9 @@ public class LoginActivity extends AppCompatActivity {
 
   }
 
+  /**
+   * Class to load the game for a player that is already signed in.
+   */
   private class LoadPlayerTask extends AsyncTask<Void, Void, Player> {
 
     @Override
@@ -115,11 +131,7 @@ public class LoginActivity extends AppCompatActivity {
       GoogleSignInAccount account = GoogleSignInService.getInstance().getAccount();
       PictureQuestDatabase db = PictureQuestDatabase.getInstance(LoginActivity.this);
       Player player = db.getPlayerDao().get(account.getId());
-      //TODO figure out how to check if player already exists?
-//    if (player == null ) {
-//      new PopulatePlayerTask().execute();         FIXME I dont think I need this at all....
-//      }
-//      player.setPlayer(account.getId());
+
       return player;
     }
 

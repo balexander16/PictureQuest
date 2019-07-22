@@ -95,7 +95,9 @@ import java.util.List;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
-
+/**
+ * {@link Fragment} class that utilizes the Camera2 Api, lovingly borrowed from GoogleSampleCode.
+ */
 public class CameraFragment extends Fragment implements View.OnClickListener,
     ActivityCompat.OnRequestPermissionsResultCallback {
   /**

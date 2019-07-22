@@ -35,7 +35,7 @@ import java.util.List;
 public interface PlayerDao {
 
   /**
-   * Method designed to insert a single {@link Player into the database.
+   * Method designed to insert a single {@link Player} into the database.
    * @param player the {@link Player} to be inserted
    * @return the id of the {@link Player}
    */

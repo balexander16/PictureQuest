@@ -35,17 +35,30 @@ import edu.cnm.deepdive.picturequest.model.entity.Choice;
 import edu.cnm.deepdive.picturequest.viewmodel.ChoiceViewModel;
 import java.util.List;
 
+/**
+ * {@link Fragment} class that is navigated to through the {@link MainActivity} the purpose of this
+ * {@link Fragment} is to display {@link Button}s that have the associated {@link Choice} to continue the
+ * Story of the game then upon clicking a {@link Button} navigate you to the {@link SceneFragment} with the
+ * next {@link edu.cnm.deepdive.picturequest.model.entity.Scene} displayed.
+ */
 public class ChoiceFragment extends Fragment {
-
-  public ChoiceFragment() {
-    // required empty constructor
-  }
 
   @Override
   public void onAttach(@NonNull Context context) {
     super.onAttach(context);
   }
 
+  /**
+   * Override of the {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)} method to create all of our
+   * {@link android.text.Layout} and {@link ChoiceViewModel} as well as create all {@link Button} objects for the specific {@link Choice}s
+   * This is done in a nested call to the {@link ChoiceViewModel#getInputs(long)} to see what the inputs are and then to put those inputs
+   * into {@link ChoiceViewModel#getChoices(long, List)} which queries to see if any of the {@link edu.cnm.deepdive.picturequest.model.entity.Input}
+   * Match a {@link Choice} for the current {@link edu.cnm.deepdive.picturequest.model.entity.Scene} by its id
+   * @param inflater the layout inflater
+   * @param container viewgroup
+   * @param savedInstanceState the bundle instance state of the app
+   * @return {@link View}
+   */
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -114,6 +127,11 @@ public class ChoiceFragment extends Fragment {
     return view;
   }
 
+  /**
+   * Method to go to the next {@link edu.cnm.deepdive.picturequest.model.entity.Scene} according to the button that is clicked.
+   * @param choices
+   * @param i
+   */
   private void goToNextScene(List<Choice> choices, int i) {
     ((MainActivity) getActivity()).setSceneId(choices.get(i).getToSceneId());
 
@@ -122,6 +140,9 @@ public class ChoiceFragment extends Fragment {
     navController.navigate(R.id.story_home);
   }
 
+  /**
+   * Method to return the game state to the first {@link edu.cnm.deepdive.picturequest.model.entity.Scene}
+   */
   private void goToFirstScene() {
     ((MainActivity) getActivity()).setSceneId(1);
 
@@ -129,8 +150,5 @@ public class ChoiceFragment extends Fragment {
         .findNavController(getActivity(), R.id.nav_host_fragment);
     navController.navigate(R.id.story_home);
   }
-
-  //TODO set buttons display to be the available choices to the scene we are currently on and then onClick go to the next scene...........
-  // TODO bundle?????
 
 }

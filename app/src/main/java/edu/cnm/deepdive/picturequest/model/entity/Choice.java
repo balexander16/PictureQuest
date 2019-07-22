@@ -68,6 +68,7 @@ public class Choice {
 
   /**
    * What {@link Scene} the {@link Choice} comes from
+   *
    */
   @SerializedName("to")
   @ColumnInfo(name = "to_scene_id", index = true)
@@ -107,7 +108,7 @@ public class Choice {
 
   /**
    * gets the Id of a {@link Choice}
-   * @return
+   * @return long of the {@link #id}
    */
   public long getId() {
     return id;
@@ -139,7 +140,7 @@ public class Choice {
 
   /**
    * override of to string to make sure it is simply outputting the name of the {@link Choice}
-   * @return
+   * @return {@link String} of the {@link #name}
    */
   @Override
   public String toString() {

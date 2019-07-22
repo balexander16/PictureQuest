@@ -79,7 +79,7 @@ public abstract class PictureQuestDatabase  extends RoomDatabase {
 
   /**
    * Method to get the {@link PlayerDao}
-   * @return
+   * @return {@link PlayerDao}
    */
   public abstract PlayerDao getPlayerDao();
 
