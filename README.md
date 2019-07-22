@@ -7,7 +7,7 @@
 * [Javadocs](docs/api/overview-summary.html)
 * [User Instructions](docs/userinstructions.md)
 * [Build Instructions](docs/buildinstructions.md)
-* [License](LICENSE.md)
+* [License](LICENSE)
 * [Copyright for Third Party Libraries](docs/license.md)
 
 ## Personal Android Proect:
