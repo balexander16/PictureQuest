@@ -48,10 +48,11 @@ Hopefully that app will be appealing to fans off RPG's that are looking to get u
 
 ## Android API Versions
 * App was tested on API version 26 min with a target api of 28 on a Nexus 5X API 28
+* This was done for the Clarifai API, that is why the version level is so high. 
 * It was also tested on a Google Pixel 2 with an API version 28 
   * This is my personal phone and was tested extensively on this since actual real pictures instead of an emulator is more ideal.
 * App functions in any orientation in all fragments. As far as I know... CameraFragment has a seperate layout for landscape.
-* Highly recommend 
+* Highly recommend using an actual phone instead of a emulator. 
 
 ## List of 3rd Party Libraries. 
 * Facebook Stetho for database testing.
