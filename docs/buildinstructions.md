@@ -5,7 +5,7 @@
 ## Build Instructions. 
 
 Please follow these steps to setup this application. 
-1. Fork a copy of this app into your own repository to then clone or download from their. Or simply clone this app locally. 
+1. Fork a copy of this app into your own repository to then clone or download from there or simply clone this app locally. 
     * Copy the SSH Key url from the clone button.
     * In IntelliJ select Check out from Version Control
          * Git, then paste the URL you copied to your clipboard.
