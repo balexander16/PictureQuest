@@ -274,10 +274,6 @@ public class CameraFragment extends Fragment implements View.OnClickListener,
     @Override
     public void onImageAvailable(ImageReader reader) {
       mBackgroundHandler.post(new ImageSaver(reader.acquireNextImage(), mFile, getContext(), playerId, sceneId));
-      //FIXME placeholder #7 nope!
-
-//      new ClarifaiTask(getContext(), playerId, sceneId)
-//          .execute(mFile);
     }
 
   };
@@ -338,9 +334,6 @@ public class CameraFragment extends Fragment implements View.OnClickListener,
                 aeState == CaptureResult.CONTROL_AE_STATE_CONVERGED) {
               mState = STATE_PICTURE_TAKEN;
               captureStillPicture();
-//              new ClarifaiTask(getContext(), playerId, sceneId)
-//                  .execute(mFile);
-              //TODO see if I need both of these calls. I do not think this is the place #3
             } else {
               runPrecaptureSequence();
             }
@@ -362,9 +355,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener,
           Integer aeState = result.get(CaptureResult.CONTROL_AE_STATE);
           if (aeState == null || aeState != CaptureResult.CONTROL_AE_STATE_PRECAPTURE) {
             mState = STATE_PICTURE_TAKEN;
-            captureStillPicture();                //FIXME it might be here too? place #2
-//            new ClarifaiTask(getContext(), playerId, sceneId)
-//                .execute(mFile);
+            captureStillPicture();
           }
           break;
         }
@@ -459,7 +450,6 @@ public class CameraFragment extends Fragment implements View.OnClickListener,
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    // TODO take in the bundle of information of what the current user and scene is?
     playerId = ((MainActivity) getActivity()).getPlayerId();
     sceneId = ((MainActivity) getActivity()).getSceneId();
 
@@ -879,11 +869,6 @@ public class CameraFragment extends Fragment implements View.OnClickListener,
           Log.d(TAG, mFile.toString());
           unlockFocus();
 
-//          new ClarifaiTask(getContext(), playerId, sceneId)
-//              .execute(mFile);
-
-          //TODO see if this is the right place for the clarifai task. I think so it works!!!!!!!
-          // place #4
 
         }
       };
@@ -891,17 +876,10 @@ public class CameraFragment extends Fragment implements View.OnClickListener,
       mCaptureSession.stopRepeating();
       mCaptureSession.abortCaptures();
       mCaptureSession.capture(captureBuilder.build(), CaptureCallback, null);
-      //TODO another place to try attempting now, nope! #6 NOPE!!!!
-//      new ClarifaiTask(getContext(), playerId, sceneId)
-//          .execute(mFile);
 
     } catch (CameraAccessException e) {
       e.printStackTrace();
     }
-//FIXME place #1
-
-//    new ClarifaiTask(getContext(), playerId, sceneId)
-//        .execute(mFile);
   }
 
   /**
@@ -933,10 +911,6 @@ public class CameraFragment extends Fragment implements View.OnClickListener,
       mState = STATE_PREVIEW;
       mCaptureSession.setRepeatingRequest(mPreviewRequest, mCaptureCallback,
           mBackgroundHandler);
-      //FIXME place holder #8
-
-//      new ClarifaiTask(getContext(), playerId, sceneId)
-//          .execute(mFile);
 
     } catch (CameraAccessException e) {
       e.printStackTrace();
@@ -948,11 +922,6 @@ public class CameraFragment extends Fragment implements View.OnClickListener,
     switch (view.getId()) {
       case R.id.picture: {
         takePicture();
-//        new ClarifaiTask(getContext(), playerId, sceneId)
-//            .execute(mFile);
-
-//                                               TODO this was the original spot that worked have tried another spot to see if bug is fixed   (place #5)
-//                                               TODO get rid of this placeholder if correct spot is found.
         break;
       }
       case R.id.info: {
@@ -1022,11 +991,8 @@ public class CameraFragment extends Fragment implements View.OnClickListener,
       }
       new ClarifaiTask(context, playerId, sceneId)
           .execute(mFile);
-        //FIXME place #10 works for now!!!!! thank the lord.
+
     }
-
-    //FIXME place #9
-
 
   }
 
