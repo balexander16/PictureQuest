@@ -139,7 +139,7 @@ public class Choice {
   }
 
   /**
-   * override of to string to make sure it is simply outputting the name of the {@link Choice}
+   * Override of to string to make sure it is simply outputting the name of the {@link Choice}
    * @return {@link String} of the {@link #name}
    */
   @Override

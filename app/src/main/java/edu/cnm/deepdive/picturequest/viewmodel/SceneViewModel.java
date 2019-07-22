@@ -48,7 +48,7 @@ public class SceneViewModel extends AndroidViewModel {
    * Constructor for the ViewModel association to the {@link edu.cnm.deepdive.picturequest.SceneFragment}
    * This constructor is using a {@link Transformations}  for the {@link LiveData} {@link #scene} field above
    * to check for anytime the player is updated into the database. This takes in the {@link #filterLiveData}
-   * as the key checking if there are any changes.
+   * as the key checking if there are any changes. Initializes the instance.
    * @param application the application
    */
   public SceneViewModel(@NonNull Application application) {

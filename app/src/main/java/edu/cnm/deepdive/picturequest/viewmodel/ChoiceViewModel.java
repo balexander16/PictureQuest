@@ -37,7 +37,7 @@ public class ChoiceViewModel extends AndroidViewModel {
   private LiveData<Choice> choice;
 
   /**
-   * Constructor for the {@link ChoiceViewModel}
+   * Constructor for the {@link ChoiceViewModel} initializes the instance.
    * @param application the Application
    */
   public ChoiceViewModel(@NonNull Application application) {

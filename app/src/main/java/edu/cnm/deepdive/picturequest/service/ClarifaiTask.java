@@ -57,7 +57,7 @@ public class ClarifaiTask extends AsyncTask<File, Void, List<ClarifaiOutput<Conc
   private long sceneId;
 
   /**
-   * Constructor for the class.
+   * Constructor for the class. Initializes the instance. {@link #playerId} and {@link #sceneId}
    * @param context current context of app passed in.
    * @param playerId the current player
    * @param sceneId the current scene.
