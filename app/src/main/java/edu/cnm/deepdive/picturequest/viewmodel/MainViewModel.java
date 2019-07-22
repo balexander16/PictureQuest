@@ -26,9 +26,19 @@ import androidx.lifecycle.Transformations;
 import edu.cnm.deepdive.picturequest.model.database.PictureQuestDatabase;
 import edu.cnm.deepdive.picturequest.model.entity.Player;
 
+/**
+ * {@link AndroidViewModel} class to keep database queries off needed for the main activity off of the UI Thread.
+ */
 public class MainViewModel extends AndroidViewModel {
 
+  /**
+   * {@link LiveData} {@link Player} variable to keep track of the player currently signed in then passed to fragments.
+   */
   private LiveData<Player> player;
+  /**
+   * {@link MutableLiveData} {@link Long} a filter for our live data to be used in a {@link Transformations}{@link java.util.Map}
+   * to keep track of when the {@link Player} is updated so anytime it changes our {@link androidx.lifecycle.Observer} knows.
+   */
   private MutableLiveData<Long> filterLiveData = new MutableLiveData<>();
 
   public MainViewModel(@NonNull Application application) {
