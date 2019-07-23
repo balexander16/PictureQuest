@@ -18,7 +18,7 @@ Please follow these steps to setup this application.
         * Confirm this worked, you should be able to switch from project view to android view. (Top left under file drop down in IntelliJ)
 5. You will need a Clarifai API key to make this work. Get your own at clarifai.com 
     * Or if you are Nick, Shaun, or Todd please retrieve this from Learn! 
-6. You will then need to make a child directory in where ever you cloned or saved this project on your local machine. Called keys
+6. You will then need to make a directory where ever you cloned or saved this project on your local machine. Called keys
     * for instance if this in .../projects/PictureQuest please create a directory in .../projects.
 7. Inside of your keys directory please create a clarifai.properties file. 
 8. The only thing inside of this file should be api_key = [YOUR API KEY]
