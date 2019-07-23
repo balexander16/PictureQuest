@@ -66,6 +66,11 @@ Hopefully that app will be appealing to fans off RPG's that are looking to get u
 
 *Please see the 3rd Party License and Copyright link above
 
+## Aesthetic Improvements that would Improve App
+* Better formatting and display of the scenes 
+* Better descriptions in choice, instead of just the objext found. 
+* Images along with the text story to set theme better
+
 ## Stretch Goals
 * Add in a reset function in options. 
 * Add in more aesthetics, images, scroll all kinds of things. 
